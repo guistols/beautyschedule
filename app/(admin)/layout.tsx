@@ -5,7 +5,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     return (
         /* Container principal que ocupa 100% da altura da tela */
         <div className="flex min-h-screen w-full" >
-            {/* <Sidebar /> */}
             {/* Wrapper do Conteúdo - Flex Col para empilhar Header, Main e Footer */}
             <div className="flex flex-1 flex-col overflow-x-hidden">
                 <Header />
