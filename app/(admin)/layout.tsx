@@ -16,6 +16,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 </main>
                 <Footer />
             </div>
-       </div >
+        </div >
     )
 }

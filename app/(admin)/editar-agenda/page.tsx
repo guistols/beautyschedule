@@ -1,4 +1,4 @@
-export default function NovaAgenda() {
+export default function EditarAgenda() {
     return (
         <div className="max-w-xl mx-auto p-10 bg-white dark:bg-slate-900/50 shadow-2xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-800 rounded-2xl my-12 font-sans transition-colors">
 
@@ -12,7 +12,7 @@ export default function NovaAgenda() {
                         <line x1="3" y1="10" x2="21" y2="10"></line>
                     </svg>
                     <span className="text-3xl font-bold text-slate-900 dark:text-slate-50 tracking-tight">
-                        Cadastre um novo agendamento
+                        Editar agendamento
                     </span>
                 </div>
                 <p className="text-slate-500 dark:text-slate-400 text-base leading-relaxed max-w-md">
