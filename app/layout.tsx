@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { AuthProvider } from "./context/AuthContext";
 
 
 const geistSans = Geist({
@@ -28,7 +29,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="h-full">
       <body className="h-full bg-zinc-50 antialiased text-zinc-900">
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
