@@ -1,6 +1,11 @@
 'use client'
 
+import { useAuth } from "../context/AuthContext";
+
 export default function Header() {
+
+  const {usuario, logout} = useAuth();
+
   return (
     <header className="w-full bg-[#2B344B] border-b border-[#1F2636]/50 sticky top-0 z-50 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -26,14 +31,20 @@ export default function Header() {
             </div>
 
             <div className="flex flex-col">
-              <span className="text-sm text-slate-100 font-bold tracking-tight uppercase">Guilherme</span>
+              <span className="text-sm text-slate-100 font-bold tracking-tight uppercase">
+
+                {usuario?.usuario.toLocaleUpperCase()||'Usuário não identificado'}
+
+              </span>
             </div>
           </div>
 
           {/* Lado Direito: Botão Sair com efeito hover refinado */}
           <div className="flex items-center">
             <button
+              type="button"
               className="group flex items-center gap-2 px-4 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200"
+              onClick={logout}
             >
               <span className="text-xs font-black uppercase tracking-widest hidden sm:block">Sair</span>
               <svg

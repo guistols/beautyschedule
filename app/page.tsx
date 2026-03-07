@@ -32,7 +32,7 @@ export default function LandPage() {
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-                        <Link href={"/usuarios"}
+                        <Link href="/login"
                             className="px-10 py-4 bg-slate-900 dark:bg-amber-500 text-white dark:text-slate-950 font-bold rounded-2xl hover:bg-slate-800 dark:hover:bg-amber-400 transition-all shadow-2xl shadow-slate-900/20 dark:shadow-amber-900/20 inline-block text-center uppercase tracking-widest text-sm active:scale-95"
                         >
                             Cadastrar-se agora
@@ -105,7 +105,7 @@ export default function LandPage() {
                     </p>
                     <div className="mt-12 flex flex-col items-center gap-6">
                         <Link
-                            href="/usuarios"
+                            href="/login"
                             className="bg-amber-500 hover:bg-amber-600 text-slate-950 px-12 py-4 rounded-2xl font-bold transition-all transform hover:scale-105"
                         >
                             COMEÇAR AGORA

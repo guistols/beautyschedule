@@ -32,9 +32,23 @@ export default function Cliente() {
                         <label className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Telefone:</label>
                         <input
                             type="text"
-                            placeholder="(00) 00000-0000"
+                            placeholder="Telefone"
                             className="w-full px-5 py-4 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-slate-900 dark:focus:border-amber-400 transition-all text-slate-800 dark:text-slate-100 font-medium"
                         />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                        <label className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                            CPF
+                        </label>
+                        <div className="relative group">
+                            <input
+                                type="text"
+                                placeholder="000.000.000-00"
+                                className="w-full px-5 py-4 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-slate-900 dark:focus:border-amber-400 transition-all text-slate-800 dark:text-slate-100 font-medium"
+                            />
+
+                        
+                        </div>
                     </div>
                 </div>
 

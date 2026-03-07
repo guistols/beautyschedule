@@ -1,18 +1,29 @@
 'use client'
 
 import { useRouter } from "next/navigation"
+import { useAuth, Usuario } from "../context/AuthContext";
 
 export default function Login() {
 
     const router = useRouter();
+    const { login } = useAuth();
 
-    const handleLogin = async (formData:FormData) => {
+    const handleLogin = async (formData: FormData) => {
         const usuario = formData.get("usuario")
-        const senha   = formData.get("senha")
+        const senha = formData.get("senha")
+        try {
+            //Validou na API
+            const usuarioMock = new Usuario(1, "GUILHERME.STOLS")
+            const tokenMock = "jwt-asmdsamdoamoskdsoa-dsadsa21e41"
 
-        console.log(`Autenticado - Usuário: ${usuario}`)
+            login(usuarioMock, tokenMock);
 
-        router.push("/agenda")
+            router.push("/agenda")
+            console.log(`Autenticado - Usuário: ${usuario}`)
+        }
+        catch {
+            alert("Erro ao entrar no sistema.")
+        }
     }
 
 
@@ -38,7 +49,7 @@ export default function Login() {
                 </div>
 
                 <form action={handleLogin} className="flex flex-col gap-6">
-                    
+
                     <div className="flex flex-col gap-2">
                         <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] ml-1">
                             Usuário
@@ -53,7 +64,7 @@ export default function Login() {
                         </div>
                     </div>
 
-                    
+
                     <div className="flex flex-col gap-2">
                         <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] ml-1">
                             Senha
@@ -68,7 +79,7 @@ export default function Login() {
                         </div>
                     </div>
 
-                    
+
                     <button
                         type="submit"
                         className="mt-4 w-full bg-[#2B344B] dark:bg-amber-500 hover:bg-slate-800 dark:hover:bg-amber-400 text-white dark:text-[#2B344B] font-bold py-5 rounded-2xl transition-all shadow-xl shadow-slate-200 dark:shadow-amber-900/20 active:scale-[0.98] uppercase text-xs tracking-[0.2em]"
