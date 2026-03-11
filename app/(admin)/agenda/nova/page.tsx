@@ -1,3 +1,5 @@
+import Formulario from "../components/Formulario";
+
 export default function NovaAgenda() {
     return (
         <div className="max-w-xl mx-auto p-10 bg-white dark:bg-slate-900/50 shadow-2xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-800 rounded-2xl my-12 font-sans transition-colors">
@@ -21,6 +23,7 @@ export default function NovaAgenda() {
             </div>
 
             {/* Aqui vai ficar o componente do formulário */}
+            <Formulario></Formulario>
             
                 {/* Botão de Ação - Destaque Amber no Dark Mode */}
                 <button className="mt-4 w-full bg-slate-900 dark:bg-amber-500 hover:bg-slate-800 dark:hover:bg-amber-600 text-white dark:text-slate-950 font-semibold py-5 rounded-xl transition-all shadow-xl shadow-slate-900/20 active:scale-[0.98] uppercase text-xs tracking-[0.2em]">
