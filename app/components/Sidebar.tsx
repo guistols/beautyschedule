@@ -22,7 +22,7 @@ export function Sidebar() {
                 </Link>
 
                 <Link
-                    href="/cliente"
+                    href="/clientes"
                     className="block px-6 py-4 rounded-2xl text-slate-400 hover:text-white hover:bg-white/5 transition-all group"
                 >
                     <span className="text-[10px] font-black uppercase tracking-[0.3em] group-hover:text-amber-500 transition-colors">Clientes</span>
