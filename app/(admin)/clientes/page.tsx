@@ -7,11 +7,13 @@ export default function Clientes() {
 
     const [clientes, setClientes] = useState<Cliente[]>([]);
 
+    //carregar a lista
     useEffect(() => {
-        carregarDados();
+        carregarCliente();
     }, []);
 
-    const carregarDados = async () => {
+    //funcao pra trazer os clientes
+    const carregarCliente = async () => {
         try {
             const dados = await ClienteMock.listarTodos();
             setClientes(dados);
@@ -19,7 +21,7 @@ export default function Clientes() {
             console.error(error)
         }
     }
-
+    
     const handleAlterarStatus = async (cliente:Cliente)=>{
         try{
             setClientes( clientesAtuais => 
@@ -103,7 +105,7 @@ export default function Clientes() {
                                     <td className="px-6 py-4 text-right">
                                         <div className="flex items-center justify-end gap-2">
                                             <Link 
-                                                href={`/cliente/${cliente.codigo}/editar`}
+                                                href={`/clientes/${cliente.codigo}/editar`}
                                                 className="p-2 text-slate-400 hover:text-amber-500 hover:bg-amber-500/10 rounded-xl transition-all"
                                                 title="Editar"
                                             >

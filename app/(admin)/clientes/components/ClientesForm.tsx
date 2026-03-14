@@ -1,28 +1,46 @@
 'use client'
-import { Cliente } from "@/app/mock/cliente"
+import { Cliente, ClienteMock } from "@/app/mock/cliente"
 import { useState } from "react"
 import Link from "next/link";
+import { Router } from "next/router";
+import { useRouter } from "next/navigation";
 
+// passar a prop para tratar e utilizar o mesmo formulario
+interface ClienteFormProps {
+    clienteExistente?: Cliente
+}
 
-export default function ClientesForm() {
+export default function ClientesForm({ clienteExistente }: ClienteFormProps) {
 
-    const [clientes, setClientes] = useState<Cliente>(new Cliente(0, '', '', '', true))
+    //ele vai trazer o clienteExistente caso não seja para fazer um novo
+    const [clientes, setClientes] = useState<Cliente>(
+        clienteExistente || new Cliente(0, '', '', '', true))
+    const router = useRouter();
 
 
     const handleChange = (campo: 'nome' | 'cpf' | 'telefone', valor: string) => {
         setClientes(prev =>
             new Cliente(
+
                 prev.codigo,
                 campo === 'nome' ? valor : prev.nome,
-                campo === 'cpf' ? valor : prev.nome,
-                campo === 'telefone' ? valor : prev.nome,
+                campo === 'telefone' ? valor : prev.telefone,
+                campo === 'cpf' ? valor : prev.cpf,
                 prev.ativo
             )
         )
     }
 
-    const handleSalvar = (formData: FormData) => {
+    // salvar os dados do formulario
+    const handleSalvar = async (formData: FormData) => {
+        
 
+        await ClienteMock.salvar(clientes)
+
+
+        alert("Cliente salvo com sucesso!")
+
+        router.push("/clientes")
     }
 
     return (
