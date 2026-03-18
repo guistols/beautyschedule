@@ -14,4 +14,9 @@ export class ServicoMock {
         new Servico(2,"Barba",20,30),
         new Servico(3,"Cabelo + Barba",45,75)    
     ]
+
+    static async listarTodos():Promise<Servico[]>{
+        return [...this.servicosDB]
+    }
+
 }
