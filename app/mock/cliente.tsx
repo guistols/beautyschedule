@@ -35,9 +35,9 @@ export class ClienteMock {
             this.clienteDB.push(cliente)
         }else{
             //altera o cliente no index exato
-            this.clienteDB[indexExistente].nome = cliente.nome
-            this.clienteDB[indexExistente].cpf = cliente.telefone
-            this.clienteDB[indexExistente].cpf = cliente.cpf
+            this.clienteDB[indexExistente].nome         = cliente.nome
+            this.clienteDB[indexExistente].telefone     = cliente.telefone
+            this.clienteDB[indexExistente].cpf          = cliente.cpf
         }
     }
 

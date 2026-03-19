@@ -1,11 +1,15 @@
-import { Servico } from "@/app/mock/servico";
+import { Servico, ServicoMock } from "@/app/mock/servico";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-export default function ServicosForm() {
+interface ServicoFormProps {
+    servicoExistente?: Servico
+}
 
-    const [servicos,setServicos] = useState<Servico>(new Servico(0,'',0,0))
+export default function ServicosForm({ servicoExistente }:ServicoFormProps) {
+
+    const [servicos,setServicos] = useState<Servico>(servicoExistente || new Servico(0,'',0,0))
     const router = useRouter();
 
     const handleChange = (campo: 'descricao' | 'tempo' | 'preco' , valor: string) =>{
@@ -21,6 +25,11 @@ export default function ServicosForm() {
 
     const handleSalvar = async (formData: FormData) => {
 
+        await ServicoMock.salvar(servicos)
+
+        alert("Serviço salvo com sucesso!")
+
+        router.push("/servicos")
     }
 
     return (

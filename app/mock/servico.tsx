@@ -19,4 +19,24 @@ export class ServicoMock {
         return [...this.servicosDB]
     }
 
+    static async salvar(servico: Servico): Promise<void>{
+        const indexExistente = this.servicosDB.findIndex(s => s.codigo === servico.codigo)
+
+
+        if(indexExistente === -1){
+            const novoCodigo = Math.max(...this.servicosDB.map(s => s.codigo)) +1
+
+            servico.codigo = novoCodigo
+
+            this.servicosDB.push(servico)
+        }else{
+            this.servicosDB[indexExistente].descricao   = servico.descricao
+            this.servicosDB[indexExistente].preco       = servico.preco
+            this.servicosDB[indexExistente].tempo       = servico.tempo
+        }
+    }
+
+    static async buscarId(codigo:number): Promise<Servico | undefined> {
+        return this.servicosDB.find(s => s.codigo === codigo)
+    }
 }
