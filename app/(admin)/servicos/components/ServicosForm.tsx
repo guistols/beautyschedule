@@ -1,3 +1,4 @@
+'use client'
 import { Servico, ServicoMock } from "@/app/mock/servico";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -9,7 +10,8 @@ interface ServicoFormProps {
 
 export default function ServicosForm({ servicoExistente }:ServicoFormProps) {
 
-    const [servicos,setServicos] = useState<Servico>(servicoExistente || new Servico(0,'',0,0))
+    const [servicos,setServicos] = useState<Servico>(
+        servicoExistente || new Servico(0,'',0,0))
     const router = useRouter();
 
     const handleChange = (campo: 'descricao' | 'tempo' | 'preco' , valor: string) =>{
