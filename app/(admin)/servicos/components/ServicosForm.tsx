@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 interface ServicoFormProps {
-    servicoExistente?: Servico
+    servicoExistente?: Servico | null
 }
 
 export default function ServicosForm({ servicoExistente }:ServicoFormProps) {

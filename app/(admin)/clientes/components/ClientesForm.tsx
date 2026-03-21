@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link";
 import { Router } from "next/router";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 // passar a prop para tratar e utilizar o mesmo formulario
 interface ClienteFormProps {
@@ -14,7 +15,7 @@ export default function ClientesForm({ clienteExistente }: ClienteFormProps) {
 
     //ele vai trazer o clienteExistente caso não seja para fazer um novo
     const [clientes, setClientes] = useState<Cliente>(
-        clienteExistente || new Cliente(0, '', '', '', true))
+        clienteExistente || new Cliente(null, '', '', '', "ATIVO"))
     const router = useRouter();
 
 
@@ -22,11 +23,11 @@ export default function ClientesForm({ clienteExistente }: ClienteFormProps) {
         setClientes(prev =>
             new Cliente(
 
-                prev.codigo,
+                prev.id,
                 campo === 'nome' ? valor : prev.nome,
                 campo === 'telefone' ? valor : prev.telefone,
                 campo === 'cpf' ? valor : prev.cpf,
-                prev.ativo
+                prev.status
             )
         )
     }
@@ -34,11 +35,15 @@ export default function ClientesForm({ clienteExistente }: ClienteFormProps) {
     // salvar os dados do formulario
     const handleSalvar = async (formData: FormData) => {
         
+        debugger;
 
-        await ClienteMock.salvar(clientes)
+        var response = await axios.post<number>('http://localhost:8080/clientes/salvar', clientes)
 
+        if(response.status !== 200){
+            alert("Erro ao salvar cliente!")
+        }
 
-        alert("Cliente salvo com sucesso!")
+        alert("Cliente salvo com sucesso!" +response.data)
 
         router.push("/clientes")
     }

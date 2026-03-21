@@ -1,5 +1,6 @@
 'use client'
 import { Cliente, ClienteMock } from "@/app/mock/cliente";
+import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -15,8 +16,11 @@ export default function Clientes() {
     //funcao pra trazer os clientes
     const carregarCliente = async () => {
         try {
-            const dados = await ClienteMock.listarTodos();
-            setClientes(dados);
+            const dados = await axios.get<Cliente[]>('http://localhost:8080/clientes/listar');
+            if(dados.status !== 200){
+                alert("Erro ao carregar dados!")
+            }   
+            setClientes(dados.data);
         } catch (error) {
             console.error(error)
         }
@@ -24,9 +28,10 @@ export default function Clientes() {
     
     const handleAlterarStatus = async (cliente:Cliente)=>{
         try{
+            
             setClientes( clientesAtuais => 
-                clientesAtuais.map(c=>c.codigo === cliente.codigo
-                    ?new Cliente(c.codigo,c.nome,c.telefone,c.cpf,!c.ativo) : c))
+                clientesAtuais.map(c=>c.id === cliente.id
+                    ?new Cliente(c.id,c.nome,c.telefone,c.cpf, c.status) : c))
         }catch(error){
             alert("Erro ao editar")
         }
@@ -84,8 +89,8 @@ export default function Clientes() {
                         </thead>
                         <tbody className="divide-y divide-slate-100 dark:divide-white/5">
                             {clientes.map((cliente) => (
-                                <tr key={cliente.codigo} className="group hover:bg-slate-50/50 dark:hover:bg-white/[0.02] transition-colors">
-                                    <td className="px-6 py-4 text-sm font-medium text-slate-400">#{cliente.codigo}</td>
+                                <tr key={cliente.id} className="group hover:bg-slate-50/50 dark:hover:bg-white/[0.02] transition-colors">
+                                    <td className="px-6 py-4 text-sm font-medium text-slate-400">#{cliente.id}</td>
                                     <td className="px-6 py-4">
                                         <div className="flex flex-col">
                                             <span className="text-sm font-bold text-slate-900 dark:text-slate-100">{cliente.nome}</span>
@@ -95,17 +100,17 @@ export default function Clientes() {
                                     <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-400 font-medium">{cliente.telefone}</td>
                                     <td className="px-6 py-4">
                                         <span className={`inline-flex items-center px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest ${
-                                            cliente.ativo 
+                                            cliente.status 
                                             ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20' 
                                             : 'bg-red-500/10 text-red-500 border border-red-500/20'
                                         }`}>
-                                            {cliente.ativo ? 'Ativo' : 'Inativo'}
+                                            {cliente.status ? 'ATIVO' : 'INATIVO'}
                                         </span>
                                     </td>
                                     <td className="px-6 py-4 text-right">
                                         <div className="flex items-center justify-end gap-2">
                                             <Link 
-                                                href={`/clientes/${cliente.codigo}/editar`}
+                                                href={`/clientes/${cliente.id}/editar`}
                                                 className="p-2 text-slate-400 hover:text-amber-500 hover:bg-amber-500/10 rounded-xl transition-all"
                                                 title="Editar"
                                             >
@@ -114,13 +119,13 @@ export default function Clientes() {
                                             <button 
                                                 onClick={() => handleAlterarStatus(cliente)}
                                                 className={`p-2 rounded-xl transition-all ${
-                                                    cliente.ativo 
+                                                    cliente.status 
                                                     ? 'text-slate-400 hover:text-red-500 hover:bg-red-500/10' 
                                                     : 'text-slate-400 hover:text-emerald-500 hover:bg-emerald-500/10'
                                                 }`}
-                                                title={cliente.ativo ? "Inativar" : "Ativar"}
+                                                title={cliente.status ? "Inativar" : "Ativar"}
                                             >
-                                                {cliente.ativo 
+                                                {cliente.status 
                                                     ? <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="9" x2="15" y1="9" y2="15"/><line x1="15" x2="9" y1="9" y2="15"/></svg>
                                                     : <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                                                 }

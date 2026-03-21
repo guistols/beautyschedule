@@ -5,27 +5,28 @@ import { useParams } from "next/navigation"
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ClientesForm from "../../components/ClientesForm";
+import axios from "axios";
 
-export default function EditarCliente(){
-    
+export default function EditarCliente() {
+
     const params = useParams();
-    const router =  useRouter();
+    const router = useRouter();
 
     const codigo = Number(params.codigo);
-    const [clientes,setClientes] = useState<Cliente|null>(null);
+    const [clientes, setClientes] = useState<Cliente | null>(null);
 
-    useEffect(()=>{
+    useEffect(() => {
         buscarCliente()
-    },[codigo, router]);
+    }, [codigo, router]);
 
     const buscarCliente = async () => {
-        const clienteResult = await ClienteMock.buscarId(codigo);
-    
-        if(clienteResult) setClientes(clienteResult) 
-            else router.push("/clientes")
+        const clienteResult = await axios.get<Cliente>('http://localhost:8080/clientes/' + codigo);
+        
+        if (clienteResult.data) setClientes(clienteResult.data)
+        else router.push("/clientes")
     }
 
-    if(!clientes) return(
+    if (!clientes) return (
         <div className="p-8">
             Carregando dados...
         </div>
@@ -74,7 +75,7 @@ export default function EditarCliente(){
                 </div>
             </div>
             {/* O seu Formulário entra aqui embaixo */}
-            <ClientesForm clienteExistente={clientes}/>
+            <ClientesForm clienteExistente={clientes} />
         </div>
     )
 }

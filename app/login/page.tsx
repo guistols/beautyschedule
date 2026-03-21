@@ -1,7 +1,11 @@
 'use client'
-
+import axios from "axios";
 import { useRouter } from "next/navigation"
 import { useAuth, Usuario } from "../context/AuthContext";
+
+interface LoginResponse {
+    token: string
+}
 
 export default function Login() {
 
@@ -12,11 +16,27 @@ export default function Login() {
         const usuario = formData.get("usuario")
         const senha = formData.get("senha")
         try {
-            //Validou na API
-            const usuarioMock = new Usuario(1, "GUILHERME.STOLS")
-            const tokenMock = "jwt-asmdsamdoamoskdsoa-dsadsa21e41"
 
-            login(usuarioMock, tokenMock);
+            // var loginResult = await fetch("http://localhost:8080/auth/login", {
+            //     method : 'POST',
+            //     headers:{
+            //         'Content-type' : 'application/json'
+            //     },
+            //     body: JSON.stringify({usuario:usuario,senha:senha})
+            // });
+
+            var loginResult = await axios.post<LoginResponse>('http://localhost:8080/auth/login',
+                {usuario:usuario,senha:senha}
+            )
+
+            if(loginResult.status !== 200){
+                alert("Usuário ou senha inválido!")
+                return;
+            }
+            
+            const usuarioMock = new Usuario(1, "GUILHERME.STOLS")
+
+            login(usuarioMock, loginResult.data.token);
 
             router.push("/agenda")
             console.log(`Autenticado - Usuário: ${usuario}`)
