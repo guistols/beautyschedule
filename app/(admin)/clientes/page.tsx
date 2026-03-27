@@ -16,22 +16,37 @@ export default function Clientes() {
     //funcao pra trazer os clientes
     const carregarCliente = async () => {
         try {
-            const dados = await axios.get<Cliente[]>('http://localhost:8080/clientes/listar');
-            if(dados.status !== 200){
+            const response = await axios.get<Cliente[]>('http://localhost:8080/cliente/listar');
+            if(response.status !== 200){
                 alert("Erro ao carregar dados!")
             }   
-            setClientes(dados.data);
+            setClientes(response.data);
         } catch (error) {
             console.error(error)
         }
     }
     
     const handleAlterarStatus = async (cliente:Cliente)=>{
+
+        debugger;
+
         try{
-            
-            setClientes( clientesAtuais => 
-                clientesAtuais.map(c=>c.id === cliente.id
-                    ?new Cliente(c.id,c.nome,c.telefone,c.cpf, c.status) : c))
+            var novoStatus = {};
+
+            if(cliente.status === "ATIVO"){
+                novoStatus = {status: "INATIVO"};
+            }else{
+                novoStatus = {status: "ATIVO"};
+            }
+
+            var response = await axios.put<number>('http://localhost:8080/cliente/' + cliente.id +'/AlterarStatus', novoStatus)
+
+            if (response.status !== 200) {
+                return;
+            }
+
+            setClientes([])
+            carregarCliente()
         }catch(error){
             alert("Erro ao editar")
         }
@@ -100,11 +115,11 @@ export default function Clientes() {
                                     <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-400 font-medium">{cliente.telefone}</td>
                                     <td className="px-6 py-4">
                                         <span className={`inline-flex items-center px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest ${
-                                            cliente.status 
+                                            cliente.status === 'ATIVO'
                                             ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20' 
                                             : 'bg-red-500/10 text-red-500 border border-red-500/20'
                                         }`}>
-                                            {cliente.status ? 'ATIVO' : 'INATIVO'}
+                                            {cliente.status === 'ATIVO' ? 'ATIVO' : 'INATIVO'}
                                         </span>
                                     </td>
                                     <td className="px-6 py-4 text-right">

@@ -34,16 +34,24 @@ export default function ClientesForm({ clienteExistente }: ClienteFormProps) {
 
     // salvar os dados do formulario
     const handleSalvar = async (formData: FormData) => {
-        
-        debugger;
 
-        var response = await axios.post<number>('http://localhost:8080/clientes/salvar', clientes)
+        if (clienteExistente) {
+            var response = await axios.put<number>('http://localhost:8080/cliente/' + clienteExistente.id, clientes)
 
-        if(response.status !== 200){
-            alert("Erro ao salvar cliente!")
+            if (response.status !== 200) {
+                return;
+            }
+
+            
+        } else {
+            var response = await axios.put<number>('http://localhost:8080/cliente/salvar', clientes)
+
+            if (response.status !== 200) {
+                return;
+            }
+
         }
 
-        alert("Cliente salvo com sucesso!" +response.data)
 
         router.push("/clientes")
     }

@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ServicosForm from "../../components/ServicosForm";
 import { Unbounded } from "next/font/google";
+import axios from "axios";
 
 
 
@@ -20,9 +21,9 @@ export default function EditarServico() {
     }, []);
 
     const buscarServico = async () => {
-        const servicoResult = await ServicoMock.buscarId(codigo);
+        const servicoResult = await axios.get<Servico>('http://localhost:8080/servico/' + codigo);
 
-        if (servicoResult) setServicos(servicoResult)
+        if (servicoResult.data) setServicos(servicoResult.data)
         else router.push("/servicos")
 
         if (!servico) return (
@@ -39,7 +40,7 @@ export default function EditarServico() {
 
                 {/* Botão Voltar - Estilo Minimalista */}
                 <Link
-                    href="/clientes"
+                    href="/servicos"
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white border border-red-500/20 rounded-xl transition-all active:scale-95 shadow-sm group w-fit"
                 >
                     {/* Ícone da Seta menor */}

@@ -20,7 +20,7 @@ export default function EditarCliente() {
     }, [codigo, router]);
 
     const buscarCliente = async () => {
-        const clienteResult = await axios.get<Cliente>('http://localhost:8080/clientes/' + codigo);
+        const clienteResult = await axios.get<Cliente>('http://localhost:8080/cliente/' + codigo);
         
         if (clienteResult.data) setClientes(clienteResult.data)
         else router.push("/clientes")

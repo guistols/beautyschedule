@@ -1,7 +1,8 @@
 'use client'
 import { Servico, ServicoMock } from "@/app/mock/servico";
+import axios from "axios";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface ServicoFormProps {
@@ -11,23 +12,24 @@ interface ServicoFormProps {
 export default function ServicosForm({ servicoExistente }:ServicoFormProps) {
 
     const [servicos,setServicos] = useState<Servico>(
-        servicoExistente || new Servico(0,'',0,0))
+        servicoExistente || new Servico(0,'',0,0,"ATIVO"))
     const router = useRouter();
 
     const handleChange = (campo: 'descricao' | 'tempo' | 'preco' , valor: string) =>{
         setServicos(prev=>
             new Servico(
-                prev.codigo,
+                prev.id,
                 campo === 'descricao' ? valor : prev.descricao,
                 campo === 'tempo' ? Number(valor) : prev.tempo,
-                campo === 'preco' ? Number(valor): prev.preco
+                campo === 'preco' ? Number(valor): prev.preco,
+                prev.status
             )
         )
     }
 
     const handleSalvar = async (formData: FormData) => {
 
-        await ServicoMock.salvar(servicos)
+        var response = await axios.post<number>('http://localhost:8080/servico/salvar', servicos)
 
         alert("Serviço salvo com sucesso!")
 
@@ -79,7 +81,8 @@ export default function ServicosForm({ servicoExistente }:ServicoFormProps) {
                                 </div>
                                 <input
                                     required
-                                    value={Number(servicos.tempo)}
+                                    value={servicos.tempo}
+                                    onChange={(e)=>{handleChange('tempo', e.target.value)}}
                                     type="number"
                                     placeholder="45"
                                     className="w-full pl-14 pr-6 py-4 bg-slate-50 dark:bg-[#1F2636] border border-transparent dark:border-white/5 rounded-2xl focus:outline-none focus:border-amber-400 transition-all text-sm text-slate-800 dark:text-slate-100"
@@ -98,7 +101,8 @@ export default function ServicosForm({ servicoExistente }:ServicoFormProps) {
                                 </div>
                                 <input
                                     required
-                                    value={Number(servicos.preco)}
+                                    value={servicos.preco}
+                                    onChange={(e)=>{handleChange('preco', e.target.value)}}
                                     type="text"
                                     placeholder="0,00"
                                     className="w-full pl-12 pr-6 py-4 bg-slate-50 dark:bg-[#1F2636] border border-transparent dark:border-white/5 rounded-2xl focus:outline-none focus:border-amber-400 transition-all text-sm font-bold text-slate-800 dark:text-slate-100 placeholder:text-slate-500"

@@ -1,28 +1,28 @@
 package com.senac.beautyschedule.model.entities;
-import com.senac.beautyschedule.model.entities.enuns.EnumStatusCliente;
+
+import com.senac.beautyschedule.model.entities.enuns.EnumStatusServico;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "cliente")
+@Table(name = "servico")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cliente {
+public class Servico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
+    private String descricao;
 
-    private String telefone;
+    private double tempo;
 
-    private String cpf;
+    private double preco;
 
-    private EnumStatusCliente status = EnumStatusCliente.ATIVO;
-
+    private EnumStatusServico status = EnumStatusServico.ATIVO;
 
 }
