@@ -1,10 +1,9 @@
 'use client'
-import { Servico, ServicoMock } from "@/app/mock/servico";
+import { Servico } from "@/app/mock/servico";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ServicosForm from "../../components/ServicosForm";
-import { Unbounded } from "next/font/google";
 import axios from "axios";
 
 
@@ -14,24 +13,27 @@ export default function EditarServico() {
     const router = useRouter();
 
     const codigo = Number(params.codigo)
-    const [servico, setServicos] = useState<Servico | null>(null);
+    const [servicos, setServicos] = useState<Servico | null>(null);
 
     useEffect(() => {
         buscarServico();
     }, []);
 
     const buscarServico = async () => {
+        debugger;
         const servicoResult = await axios.get<Servico>('http://localhost:8080/servico/' + codigo);
 
         if (servicoResult.data) setServicos(servicoResult.data)
         else router.push("/servicos")
 
-        if (!servico) return (
+       
+    }
+
+     if (!servicos) return (
             <div className="p-8">
                 Carregando dados...
             </div>
         )
-    }
 
     return (
         <div>
@@ -66,7 +68,7 @@ export default function EditarServico() {
                 </Link>
             </div>
 
-            <ServicosForm servicoExistente={servico} />
+            <ServicosForm servicoExistente={servicos} />
         </div>
     )
 }

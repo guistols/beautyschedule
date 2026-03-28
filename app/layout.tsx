@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { AuthProvider } from "./context/AuthContext";
+import { AgendaProvider } from "./context/UltAgendaContext";
 
 
 const geistSans = Geist({
@@ -30,7 +31,9 @@ export default function RootLayout({
     <html lang="pt-BR" className="h-full">
       <body className="h-full bg-zinc-50 antialiased text-zinc-900">
         <AuthProvider>
+          <AgendaProvider>
           {children}
+          </AgendaProvider>
         </AuthProvider>
       </body>
     </html>

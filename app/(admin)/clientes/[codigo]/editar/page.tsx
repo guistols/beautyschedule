@@ -16,8 +16,8 @@ export default function EditarCliente() {
     const [clientes, setClientes] = useState<Cliente | null>(null);
 
     useEffect(() => {
-        buscarCliente()
-    }, [codigo, router]);
+        buscarCliente();
+    }, []);
 
     const buscarCliente = async () => {
         const clienteResult = await axios.get<Cliente>('http://localhost:8080/cliente/' + codigo);

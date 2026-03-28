@@ -1,4 +1,6 @@
 package com.senac.beautyschedule.controllers;
+import com.senac.beautyschedule.model.dto.AlterarStatusClienteRequest;
+import com.senac.beautyschedule.model.dto.AlterarStatusServicoRequest;
 import com.senac.beautyschedule.model.entities.Servico;
 import com.senac.beautyschedule.model.repository.ServicoRepository;
 import io.swagger.v3.oas.annotations.Operation;
@@ -55,6 +57,19 @@ public class ServicoController {
 
         return ResponseEntity.notFound().build();
 
+    }
+
+    @PutMapping("/{id}/AlterarStatus")
+    public ResponseEntity<?> alterarStatus(@PathVariable Long id, @RequestBody AlterarStatusServicoRequest alterarStatusServicoRequest){
+        var servicoDb = servicoRepository.findById(id).orElse(null);
+
+        if(servicoDb != null){
+            servicoDb.setStatus(alterarStatusServicoRequest.status());
+            servicoRepository.save(servicoDb);
+            return ResponseEntity.ok("Atualizado com sucesso!");
+        }
+
+        return ResponseEntity.notFound().build();
     }
 
 }

@@ -8,7 +8,7 @@ import axios from "axios";
 
 // passar a prop para tratar e utilizar o mesmo formulario
 interface ClienteFormProps {
-    clienteExistente?: Cliente
+    clienteExistente ? : Cliente
 }
 
 export default function ClientesForm({ clienteExistente }: ClienteFormProps) {
@@ -34,7 +34,7 @@ export default function ClientesForm({ clienteExistente }: ClienteFormProps) {
 
     // salvar os dados do formulario
     const handleSalvar = async (formData: FormData) => {
-
+        debugger;
         if (clienteExistente) {
             var response = await axios.put<number>('http://localhost:8080/cliente/' + clienteExistente.id, clientes)
 
@@ -44,7 +44,7 @@ export default function ClientesForm({ clienteExistente }: ClienteFormProps) {
 
             
         } else {
-            var response = await axios.put<number>('http://localhost:8080/cliente/salvar', clientes)
+            var response = await axios.post<number>('http://localhost:8080/cliente/salvar', clientes)
 
             if (response.status !== 200) {
                 return;

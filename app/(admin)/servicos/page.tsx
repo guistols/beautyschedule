@@ -1,5 +1,5 @@
 'use client'
-import { Servico, ServicoMock } from "@/app/mock/servico";
+import { Servico } from "@/app/mock/servico";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -22,16 +22,31 @@ export default function Servicos() {
         }
     }
 
-    const handleAlterarStatus = async (servico: Servico) => {
-        try {
-            setServicos(servicosAtuais =>
-                servicosAtuais.map(s => s.id === servico.id
-                    ? new Servico(s.id, s.descricao, s.tempo, s.preco, s.status) : s))
-        } catch (error) {
+    const handleAlterarStatus = async (servico:Servico)=>{
+
+        debugger;
+
+        try{
+            var novoStatus = {};
+
+            if(servico.status === "ATIVO"){
+                novoStatus = {status: "INATIVO"};
+            }else{
+                novoStatus = {status: "ATIVO"};
+            }
+
+            var response = await axios.put<number>('http://localhost:8080/servico/' + servico.id +'/AlterarStatus', novoStatus)
+
+            if (response.status !== 200) {
+                return;
+            }
+
+            setServicos([])
+            carregarServico()
+        }catch(error){
             alert("Erro ao editar")
         }
     }
-
     return (
         <div className="max-w-6xl mx-auto p-6 md:p-10 font-sans transition-colors">
             <div className="space-y-8">
@@ -100,11 +115,11 @@ export default function Servicos() {
                                         </td>
 
                                         <td className="px-6 py-4 text-center">
-                                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest ${servico.status
-                                                    ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20'
+                                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest ${
+                                                servico.status === 'ATIVO'? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20'
                                                     : 'bg-red-500/10 text-red-500 border border-red-500/20'
                                                 }`}>
-                                                {servico.status ? 'ATIVO' : 'INATIVO'}
+                                                {servico.status === 'ATIVO' ? 'ATIVO' : 'INATIVO'}
                                             </span>
                                         </td>
 
