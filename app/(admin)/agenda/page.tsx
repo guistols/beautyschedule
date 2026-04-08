@@ -52,6 +52,9 @@ export default function Agenda() {
                                 <span className="font-semibold text-slate-700 dark:text-slate-300">R$ 55,00</span>
                             </div>
                             <div className="mt-1 flex items-center gap-1.5 text-xs font-medium text-slate-400 dark:text-slate-500 uppercase tracking-tight">
+                                Status: Confirmado
+                            </div>
+                            <div className="mt-1 flex items-center gap-1.5 text-xs font-medium text-slate-400 dark:text-slate-500 uppercase tracking-tight">
                                 Data e hora: 14:30h
                             </div>
                         </div>
