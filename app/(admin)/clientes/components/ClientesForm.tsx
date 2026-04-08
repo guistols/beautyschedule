@@ -1,10 +1,10 @@
 'use client'
 import { Cliente, ClienteMock } from "@/app/mock/cliente"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link";
-import { Router } from "next/router";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { useDraft } from "@/app/context/DraftContext";
 
 // passar a prop para tratar e utilizar o mesmo formulario
 interface ClienteFormProps {
@@ -18,23 +18,67 @@ export default function ClientesForm({ clienteExistente }: ClienteFormProps) {
         clienteExistente || new Cliente(null, '', '', '', "ATIVO"))
     const router = useRouter();
 
+    const { draft,salvarProgresso, limparRascunho, temRascunho} = useDraft();
+
+    useEffect(() => {
+    // Só carregamos se o formulário ainda estiver "vazio" (sem nome e sem CPF)
+    // Isso evita que o rascunho sobrescreva algo que o usuário já começou a digitar agora
+    if (temRascunho && draft && !clientes.nome && !clientes.cpf) {
+        setClientes(prev => new Cliente(
+            prev.id,
+            draft.nome || prev.nome,
+            draft.telefone || prev.telefone,
+            draft.cpf || prev.cpf,
+            prev.status
+        ));
+    }
+
+}, []);
+
+    // const handleChange = (campo: 'nome' | 'cpf' | 'telefone', valor: string) => {
+
+
+        
+    //     setClientes(prev =>
+            
+    //         new Cliente(
+
+    //             prev.id,
+    //             campo === 'nome' ? valor : prev.nome,
+    //             campo === 'telefone' ? valor : prev.telefone,
+    //             campo === 'cpf' ? valor : prev.cpf,
+    //             prev.status
+    //         )
+    //     )
+
+    //     salvarProgresso(clientes)
+
+    // }
 
     const handleChange = (campo: 'nome' | 'cpf' | 'telefone', valor: string) => {
-        setClientes(prev =>
-            new Cliente(
+    // 1. Criamos os dados atualizados primeiro para garantir que temos o valor novo
+    const dadosAtualizados = {
+        ...clientes,
+        [campo]: valor
+    };
 
-                prev.id,
-                campo === 'nome' ? valor : prev.nome,
-                campo === 'telefone' ? valor : prev.telefone,
-                campo === 'cpf' ? valor : prev.cpf,
-                prev.status
-            )
-        )
-    }
+    // 2. Atualizamos o estado da tela
+    setClientes(prev => new Cliente(
+        prev.id,
+        campo === 'nome' ? valor : prev.nome,
+        campo === 'telefone' ? valor : prev.telefone,
+        campo === 'cpf' ? valor : prev.cpf,
+        prev.status
+    ));
+
+    // 3. Enviamos os dados ATUALIZADOS para o contexto (não a variável 'clientes' antiga)
+    salvarProgresso(dadosAtualizados);
+};
+
+    
 
     // salvar os dados do formulario
     const handleSalvar = async (formData: FormData) => {
-        debugger;
         if (clienteExistente) {
             var response = await axios.put<number>('http://localhost:8080/cliente/' + clienteExistente.id, clientes)
 
@@ -51,7 +95,8 @@ export default function ClientesForm({ clienteExistente }: ClienteFormProps) {
             }
 
         }
-
+        
+        limparRascunho()
 
         router.push("/clientes")
     }
