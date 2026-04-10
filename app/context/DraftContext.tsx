@@ -24,7 +24,7 @@ export function DraftProvider({ children }: { children: ReactNode }) {
     
     dataExpiracao.setMinutes(dataExpiracao.getMinutes() + 1);
 
-    // 1. Ao carregar o app, verifica se existe rascunho nos Cookies
+   
     useEffect(() => {
         const saved = Cookies.get('cliente_draft');
         if (saved) {
@@ -32,18 +32,18 @@ export function DraftProvider({ children }: { children: ReactNode }) {
         }
     }, []);
     
-    // 2. Função para salvar o progresso (mergeando com o que já existe)
+    
     const salvarProgresso = (novosDados: ClienteDraft) => {
         debugger
         setDraft((prev) => {
             const atualizado = { ...prev, ...novosDados };
-            // Salva no cookie por 1 minuto 
+            
             Cookies.set('cliente_draft', JSON.stringify(atualizado), { expires:  dataExpiracao});
             return atualizado;
         });
     };
 
-    // 3. Limpa o rascunho após finalizar o agendamento com sucesso
+    
     const limparRascunho = () => {
         Cookies.remove('cliente_draft');
         setDraft(null);
