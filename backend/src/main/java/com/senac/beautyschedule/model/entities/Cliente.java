@@ -23,6 +23,4 @@ public class Cliente {
     private String cpf;
 
     private EnumStatusCliente status = EnumStatusCliente.ATIVO;
-
-
 }

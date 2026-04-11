@@ -3,6 +3,7 @@ package com.senac.beautyschedule.controllers;
 import com.senac.beautyschedule.model.dto.LoginRequest;
 import com.senac.beautyschedule.model.dto.LoginResponse;
 import com.senac.beautyschedule.model.repository.UsuarioRepository;
+import com.senac.beautyschedule.services.TokenService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
         @Autowired
+        private TokenService tokenService;
+
+        @Autowired
         private UsuarioRepository usuarioRepository;
 
         @Operation(description = "Faz a validação do usuário", summary = "Acessar")
@@ -27,7 +31,10 @@ public class AuthController {
         public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest){
 
             if(loginRequest.usuario().equals("String@s") && loginRequest.senha().equals("String")){
-                return ResponseEntity.ok(new LoginResponse("kkkkkkkkkkkkkkkk"));
+
+                var token = tokenService.gerarToken(loginRequest.usuario());
+
+                return ResponseEntity.ok(new LoginResponse(token));
             }
 
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
