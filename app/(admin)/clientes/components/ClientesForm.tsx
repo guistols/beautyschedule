@@ -1,15 +1,14 @@
 'use client'
-import { Cliente, ClienteMock } from "@/app/mock/cliente"
+
 import { useEffect, useState } from "react"
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useDraft } from "@/app/context/DraftContext";
+import { Cliente, ClienteFormProps } from "@/app/types/cliente/cliente";
 
 // passar a prop para tratar e utilizar o mesmo formulario
-interface ClienteFormProps {
-    clienteExistente?: Cliente
-}
+
 
 export default function ClientesForm({ clienteExistente }: ClienteFormProps) {
 

@@ -1,13 +1,10 @@
 'use client'
-import { Servico } from "@/app/mock/servico";
+
+import { Servico, ServicoFormProps } from "@/app/types/servico/servico";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-
-interface ServicoFormProps {
-    servicoExistente ? : Servico 
-}
 
 export default function ServicosForm({ servicoExistente }: ServicoFormProps) {
 

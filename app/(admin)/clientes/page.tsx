@@ -1,5 +1,7 @@
 'use client'
-import { Cliente, ClienteMock } from "@/app/mock/cliente";
+import api from "@/app/services/api";
+import { alterarStatusCliente, buscarListaCliente } from "@/app/services/clienteService";
+import { Cliente } from "@/app/types/cliente/cliente";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -16,37 +18,32 @@ export default function Clientes() {
     //funcao pra trazer os clientes
     const carregarCliente = async () => {
         try {
-            const response = await axios.get<Cliente[]>('http://localhost:8080/cliente/listar');
-            if(response.status !== 200){
-                alert("Erro ao carregar dados!")
-            }   
-            setClientes(response.data);
+            const response = await buscarListaCliente();
+            setClientes(response);
         } catch (error) {
+            alert("Erro ao carregar dados dos clientes")
             console.error(error)
         }
     }
     
     const handleAlterarStatus = async (cliente:Cliente)=>{
 
-        debugger;
+        //debugger;
 
         try{
-            var novoStatus = {};
+            var novoStatus = "";
 
             if(cliente.status === "ATIVO"){
-                novoStatus = {status: "INATIVO"};
+                novoStatus = "INATIVO";
             }else{
-                novoStatus = {status: "ATIVO"};
+                novoStatus =  "ATIVO";
             }
 
-            var response = await axios.put<number>('http://localhost:8080/cliente/' + cliente.id +'/AlterarStatus', novoStatus)
-
-            if (response.status !== 200) {
-                return;
-            }
+            await alterarStatusCliente(cliente.id||0,novoStatus)
 
             setClientes([])
             carregarCliente()
+
         }catch(error){
             alert("Erro ao editar")
         }

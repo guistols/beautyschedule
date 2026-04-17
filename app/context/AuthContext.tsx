@@ -2,22 +2,17 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import { AuthContextType, Usuario } from "../types/auth/auth";
 
-export class Usuario {
-    constructor(
-        public codigo: number,
-        public usuario: string
-    ) { }
-}
-
-interface AuthContextType {
-    usuario: Usuario | null,
-    token: string | null,
-    login: (usuario: Usuario, token: string) => void
-    logout: () => void
-}
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+export const useAuth = () => {
+    const context = useContext(AuthContext);
+    if (!context) throw new Error('useAuth deve ser usado dentro do provider!')
+
+    return context;
+}
 
 export function AuthProvider({ children }: { children: ReactNode }) {
 
@@ -67,11 +62,4 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             {children}
         </AuthContext.Provider>
     )
-}
-
-export const useAuth = () => {
-    const context = useContext(AuthContext);
-    if (!context) throw new Error('useAuth deve ser usado dentro do provider!')
-
-    return context;
 }

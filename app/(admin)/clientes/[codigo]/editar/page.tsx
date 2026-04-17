@@ -1,11 +1,12 @@
 'use client'
-import { Cliente, ClienteMock } from "@/app/mock/cliente";
+;
 import Link from "next/link";
 import { useParams } from "next/navigation"
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ClientesForm from "../../components/ClientesForm";
 import axios from "axios";
+import { Cliente } from "@/app/types/cliente/cliente";
 
 export default function EditarCliente() {
 
