@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import ClientesForm from "../../components/ClientesForm";
 import axios from "axios";
 import { Cliente } from "@/app/types/cliente/cliente";
+import { buscarClienteId } from "@/app/services/clienteService";
 
 export default function EditarCliente() {
 
@@ -21,9 +22,9 @@ export default function EditarCliente() {
     }, []);
 
     const buscarCliente = async () => {
-        const clienteResult = await axios.get<Cliente>('http://localhost:8080/cliente/' + codigo);
-        
-        if (clienteResult.data) setClientes(clienteResult.data)
+       const clienteResult = await buscarClienteId(codigo)  
+       
+        if (clienteResult) setClientes(clienteResult)
         else router.push("/clientes")
     }
 

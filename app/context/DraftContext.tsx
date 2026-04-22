@@ -34,7 +34,7 @@ export function DraftProvider({ children }: { children: ReactNode }) {
     
     
     const salvarProgresso = (novosDados: ClienteDraft) => {
-        debugger
+        //debugger
         setDraft((prev) => {
             const atualizado = { ...prev, ...novosDados };
             

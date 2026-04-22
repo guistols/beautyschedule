@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useDraft } from "@/app/context/DraftContext";
 import { Cliente, ClienteFormProps } from "@/app/types/cliente/cliente";
+import { editarCliente, salvarCliente } from "@/app/services/clienteService";
 
 // passar a prop para tratar e utilizar o mesmo formulario
 
@@ -79,19 +80,9 @@ export default function ClientesForm({ clienteExistente }: ClienteFormProps) {
     // salvar os dados do formulario
     const handleSalvar = async (formData: FormData) => {
         if (clienteExistente) {
-            var response = await axios.put<number>('http://localhost:8080/cliente/' + clienteExistente.id, clientes)
-
-            if (response.status !== 200) {
-                return;
-            }
-
-
+            await editarCliente(clienteExistente.id||0)
         } else {
-            var response = await axios.post<number>('http://localhost:8080/cliente/salvar', clientes)
-
-            if (response.status !== 200) {
-                return;
-            }
+            await salvarCliente()
 
         }
 

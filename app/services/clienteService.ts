@@ -1,3 +1,4 @@
+'use client'
 import { Cliente } from "../types/cliente/cliente";
 import api from "./api";
 
@@ -18,4 +19,28 @@ export async function alterarStatusCliente(id: number, novoStatus: string): Prom
     if (response.status !== 200) {
         return;
     }
+}
+export async function editarCliente(id: number):Promise<void>{
+    var response = await api.put<number>('/cliente/' + id)
+
+            if (response.status !== 200) {
+                return;
+            }
+}
+
+export async function salvarCliente():Promise<Cliente[]>{
+    var response = await api.post<Cliente[]>('/cliente/salvar')
+
+            if (response.status !== 200) {
+                return response.data
+            }
+
+            return []
+}
+
+export async function buscarClienteId(id: number):Promise<Cliente>{
+    const clienteResult = await api.get<number>('/cliente/' + id);
+    
+    
+    return clienteResult.data;
 }
