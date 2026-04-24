@@ -5,14 +5,18 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import io.swagger.v3.oas.annotations.servers.Server;
+import com.senac.beautyschedule.model.entities.Token;
+import com.senac.beautyschedule.model.entities.Usuario;
+import com.senac.beautyschedule.model.repository.TokenRepository;
+import com.senac.beautyschedule.model.repository.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-import java.util.concurrent.ExecutionException;
 
 @Service
 public class TokenService {
@@ -26,14 +30,27 @@ public class TokenService {
     @Value("${spring.tempoExpiracao}")
     private Long tempoExpiracao;
 
-    public DecodedJWT validarToken(String token){
-        Algorithm algoritimo = Algorithm.HMAC256(secret);
+    @Autowired
+    private TokenRepository tokenRepository;
 
-        JWTVerifier verifier = JWT.require(algoritimo)
-                .withIssuer(emissor)
-                .build();
-        return verifier.verify(token);
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
+    public Usuario validarToken(String token){
+        try{
+            Algorithm algoritimo = Algorithm.HMAC256(secret);
+
+            JWTVerifier verifier = JWT.require(algoritimo)
+                    .withIssuer(emissor)
+                    .build();
+            verifier.verify(token);
+
+            var tokenBanco = tokenRepository.findByToken(token);
+
+            return tokenBanco.get().getUsuario();
+        }catch (Exception e){
+            throw new RuntimeException();
+        }
     }
 
     public String gerarToken(String usuario) {
@@ -44,6 +61,12 @@ public class TokenService {
                     .withSubject(usuario)
                     .withExpiresAt(gerarDataExpiracao())
                     .sign(algoritimo);
+
+            var username = usuarioRepository.findAll()
+                            .stream()
+                            .filter(u -> u.getUsername().equals(usuario)).findFirst().orElse(null);
+
+            tokenRepository.save(new Token(token,username));
 
             return token;
         }catch (Exception e){

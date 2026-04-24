@@ -1,16 +1,22 @@
 package com.senac.beautyschedule.config;
 
 
+import com.senac.beautyschedule.model.entities.Usuario;
 import com.senac.beautyschedule.services.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Collections;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
@@ -41,9 +47,16 @@ public class JwtFilter extends OncePerRequestFilter {
 
                 var retornoToken = tokenService.validarToken(token);
 
-                String usuario = retornoToken.getSubject();
+                var usuarioLogado = retornoToken;
 
-                System.out.println("Usuário autenticado!" + usuario);
+            UsernamePasswordAuthenticationToken usuario = new UsernamePasswordAuthenticationToken(
+                    usuarioLogado,
+                    null,
+                    usuarioLogado.getAuthorities()
+            );
+
+
+                SecurityContextHolder.getContext().setAuthentication(usuario);
         }else{
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("Token não informado ou invalido");

@@ -4,6 +4,7 @@ import com.senac.beautyschedule.model.dto.LoginRequest;
 import com.senac.beautyschedule.model.dto.LoginResponse;
 import com.senac.beautyschedule.model.repository.UsuarioRepository;
 import com.senac.beautyschedule.services.TokenService;
+import com.senac.beautyschedule.services.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +25,18 @@ public class AuthController {
         private TokenService tokenService;
 
         @Autowired
+        private UsuarioService usuarioService;
+
+        @Autowired
         private UsuarioRepository usuarioRepository;
 
         @Operation(description = "Faz a validação do usuário", summary = "Acessar")
         @PostMapping("/login")
         public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest){
 
-            if(loginRequest.usuario().equals("String@s") && loginRequest.senha().equals("String")){
+            if(usuarioService.ValidaUsuarioSenha(loginRequest)){
 
-                var token = tokenService.gerarToken(loginRequest.usuario());
+                var token = tokenService.gerarToken(loginRequest.username());
 
                 return ResponseEntity.ok(new LoginResponse(token));
             }

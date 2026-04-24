@@ -80,9 +80,10 @@ export default function ClientesForm({ clienteExistente }: ClienteFormProps) {
     // salvar os dados do formulario
     const handleSalvar = async (formData: FormData) => {
         if (clienteExistente) {
-            await editarCliente(clienteExistente.id||0)
+            await editarCliente(clientes)
         } else {
-            await salvarCliente()
+            debugger;
+            await salvarCliente(clientes)
 
         }
 

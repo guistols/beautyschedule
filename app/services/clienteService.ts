@@ -20,26 +20,27 @@ export async function alterarStatusCliente(id: number, novoStatus: string): Prom
         return;
     }
 }
-export async function editarCliente(id: number):Promise<void>{
-    var response = await api.put<number>('/cliente/' + id)
+export async function editarCliente(cliente : Cliente):Promise<void>{
+    var response = await api.put<number>('/cliente/' + cliente.id, cliente )
 
             if (response.status !== 200) {
                 return;
             }
 }
 
-export async function salvarCliente():Promise<Cliente[]>{
-    var response = await api.post<Cliente[]>('/cliente/salvar')
+export async function salvarCliente(cliente: Cliente):Promise<Cliente>{
+    debugger;
+    var response = await api.post<Cliente>('/cliente/salvar', cliente)
 
             if (response.status !== 200) {
                 return response.data
             }
 
-            return []
+            return response.data;
 }
 
 export async function buscarClienteId(id: number):Promise<Cliente>{
-    const clienteResult = await api.get<number>('/cliente/' + id);
+    const clienteResult = await api.get<Cliente>('/cliente/' + id);
     
     
     return clienteResult.data;

@@ -1,5 +1,5 @@
 package com.senac.beautyschedule.model.dto;
 
-public record LoginRequest (String usuario, String senha){
+public record LoginRequest (String username, String senha){
 
 }
