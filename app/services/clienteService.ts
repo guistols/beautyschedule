@@ -4,9 +4,8 @@ import api from "./api";
 
 
 export async function buscarListaCliente(): Promise<Cliente[]> {
-
     const response = await api.get<Cliente[]>('/cliente/listar');
-    if (response.status == 200) {
+    if (response.status === 200) {
         return response.data
     }
     return []
@@ -17,26 +16,21 @@ export async function alterarStatusCliente(id: number, novoStatus: string): Prom
     const response = await api.put<number>('/cliente/' + id + '/AlterarStatus', { status: novoStatus })
 
     if (response.status !== 200) {
-        return;
+     
     }
 }
 export async function editarCliente(cliente : Cliente):Promise<void>{
     var response = await api.put<number>('/cliente/' + cliente.id, cliente )
+        if (response.status !== 200) {
 
-            if (response.status !== 200) {
-                return;
-            }
+        }
 }
 
-export async function salvarCliente(cliente: Cliente):Promise<Cliente>{
-    debugger;
+export async function salvarCliente(cliente: Cliente):Promise<void>{
     var response = await api.post<Cliente>('/cliente/salvar', cliente)
-
             if (response.status !== 200) {
-                return response.data
+                
             }
-
-            return response.data;
 }
 
 export async function buscarClienteId(id: number):Promise<Cliente>{

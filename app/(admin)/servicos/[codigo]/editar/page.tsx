@@ -1,10 +1,10 @@
 'use client'
-import { Servico } from "@/app/mock/servico";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ServicosForm from "../../components/ServicosForm";
 import axios from "axios";
+import { Servico } from "@/app/types/servico/servico";
 
 
 

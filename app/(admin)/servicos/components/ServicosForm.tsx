@@ -1,5 +1,6 @@
 'use client'
 
+import { editarServico, salvarServico } from "@/app/services/servicoService";
 import { Servico, ServicoFormProps } from "@/app/types/servico/servico";
 import axios from "axios";
 import Link from "next/link";
@@ -27,19 +28,9 @@ export default function ServicosForm({ servicoExistente }: ServicoFormProps) {
 
     const handleSalvar = async (formData: FormData) => {
         if (servicoExistente) {
-
-            var response = await axios.put<number>('http://localhost:8080/servico/'+ servicoExistente.id ,servicos)
-
-            if (response.status !== 200) {
-                return;
-            }
-
+            await editarServico(servicos);
         } else {
-            var response = await axios.post<number>('http://localhost:8080/servico/salvar', servicos)
-
-            if (response.status !== 200) {
-                return;
-            }
+            await salvarServico(servicos)
         }
         
         router.push("/servicos")

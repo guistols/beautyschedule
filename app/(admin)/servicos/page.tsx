@@ -1,5 +1,6 @@
 'use client'
 
+import { alterarStatusServico, buscarListaServico } from "@/app/services/servicoService";
 import { Servico } from "@/app/types/servico/servico";
 import axios from "axios";
 import Link from "next/link";
@@ -16,31 +17,24 @@ export default function Servicos() {
 
     const carregarServico = async () => {
         try {
-            const response = await axios.get<Servico[]>('http://localhost:8080/servico/listar');
-            setServicos(response.data);
+            const response = await buscarListaServico();
+            setServicos(response);
         } catch (error) {
             console.error(error)
         }
     }
 
     const handleAlterarStatus = async (servico:Servico)=>{
-
-        debugger;
-
         try{
-            var novoStatus = {};
+            var novoStatus = "";
 
             if(servico.status === "ATIVO"){
-                novoStatus = {status: "INATIVO"};
+                 novoStatus = "INATIVO";
             }else{
-                novoStatus = {status: "ATIVO"};
+                novoStatus =  "ATIVO";
             }
 
-            var response = await axios.put<number>('http://localhost:8080/servico/' + servico.id +'/AlterarStatus', novoStatus)
-
-            if (response.status !== 200) {
-                return;
-            }
+            await alterarStatusServico(servico.id||0,novoStatus) 
 
             setServicos([])
             carregarServico()

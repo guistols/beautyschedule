@@ -10,7 +10,7 @@ export default function Login() {
     const { login } = useAuth();
 
     const handleLogin = async (formData: FormData) => {
-        const usuario = formData.get("usuario")
+        const username = formData.get("username")
         const senha = formData.get("senha")
         try {
 
@@ -23,7 +23,7 @@ export default function Login() {
             // });
 
             var loginResult = await axios.post<LoginResponse>('http://localhost:8080/auth/login',
-                {usuario:usuario,senha:senha}
+                {username:username,senha:senha}
             )
 
             if(loginResult.status !== 200){
@@ -36,7 +36,7 @@ export default function Login() {
             login(usuarioMock, loginResult.data.token);
 
             router.push("/agenda")
-            console.log(`Autenticado - Usuário: ${usuario}`)
+            console.log(`Autenticado - Usuário: ${username}`)
         }
         catch {
             alert("Erro ao entrar no sistema.")
@@ -73,7 +73,7 @@ export default function Login() {
                         </label>
                         <div className="relative group">
                             <input
-                                name="usuario"
+                                name="username"
                                 type="text"
                                 placeholder="Digite seu usuário"
                                 className="w-full px-6 py-4 bg-slate-50 dark:bg-[#1F2636] border border-slate-200 dark:border-[#1F2636] rounded-2xl focus:outline-none focus:ring-4 focus:ring-amber-500/10 focus:border-amber-600 dark:focus:border-amber-500 transition-all text-slate-800 dark:text-slate-100 placeholder:text-slate-400 font-semibold"
