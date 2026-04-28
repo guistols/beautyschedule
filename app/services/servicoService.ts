@@ -29,10 +29,14 @@ export async function buscarListaServico():Promise<Servico[]>{
     return []
 
 }
-export async function buscarListaServicoId():Promise<> {
-    
+export async function buscarServicoId(id: number):Promise<Servico> {
+    const servicoResult = await api.get<Servico>('/servico/' + id);
+
+    return servicoResult.data;
 }
-axios.get<Servico>('http://localhost:8080/servico/' + codigo)
+
+
+
 
 export async function alterarStatusServico(id: number, novoStatus: string):Promise<void>{      
         var response = await api.put<number>('/servico/' + id +'/AlterarStatus', novoStatus)

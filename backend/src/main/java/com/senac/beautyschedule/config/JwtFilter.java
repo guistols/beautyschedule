@@ -43,11 +43,10 @@ public class JwtFilter extends OncePerRequestFilter {
         String header = request.getHeader("Authorization");
 
         if(header!=null && header.startsWith("Bearer ")){
-                String token = header.replace("Bearer ","");
+            String token = header.replace("Bearer ","");
 
-                var retornoToken = tokenService.validarToken(token);
-
-                var usuarioLogado = retornoToken;
+            var retornoToken = tokenService.validarToken(token);
+            var usuarioLogado = retornoToken;
 
             UsernamePasswordAuthenticationToken usuario = new UsernamePasswordAuthenticationToken(
                     usuarioLogado,
@@ -55,8 +54,7 @@ public class JwtFilter extends OncePerRequestFilter {
                     usuarioLogado.getAuthorities()
             );
 
-
-                SecurityContextHolder.getContext().setAuthentication(usuario);
+            SecurityContextHolder.getContext().setAuthentication(usuario);
         }else{
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("Token não informado ou invalido");
@@ -64,6 +62,5 @@ public class JwtFilter extends OncePerRequestFilter {
         }
 
         filterChain.doFilter(request,response);
-
     }
 }

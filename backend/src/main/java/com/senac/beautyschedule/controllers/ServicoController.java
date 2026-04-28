@@ -3,6 +3,7 @@ import com.senac.beautyschedule.model.dto.AlterarStatusClienteRequest;
 import com.senac.beautyschedule.model.dto.AlterarStatusServicoRequest;
 import com.senac.beautyschedule.model.entities.Servico;
 import com.senac.beautyschedule.model.repository.ServicoRepository;
+import com.senac.beautyschedule.services.ServicoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.Id;
@@ -20,56 +21,41 @@ import java.util.List;
 public class ServicoController {
 
     @Autowired
-    public ServicoRepository servicoRepository;
+    private ServicoRepository servicoRepository;
+
+    @Autowired
+    private ServicoService servicoService;
 
     @GetMapping("/listar")
     @Operation(description = "Faz a listagem todos os serviços cadastrados",summary = "Listagem")
     public ResponseEntity<List<Servico>> listarTodos(){
 
-        return ResponseEntity.ok(servicoRepository.findAll());
+        return ResponseEntity.ok(servicoService.BuscarTodosServicos());
     }
 
     @GetMapping("/{id}")
     @Operation(description = "Faz a listagem de um serviço um específico",summary = "Listagem")
     public ResponseEntity<Servico>listarPorId(@PathVariable Long id){
-        return ResponseEntity.ok(servicoRepository.findById(id).orElse(null));
+        return ResponseEntity.ok(servicoService.BuscarServicoId(id));
     }
 
     @PostMapping("/salvar")
     @Operation(description = "Salva e envia o cadastro do cliente para o banco de dados",summary = "Salvar")
     public ResponseEntity<Long> salvar(@RequestBody Servico servico){
-        return ResponseEntity.ok(servicoRepository.save(servico).getId());
+        return ResponseEntity.ok(servicoService.SalvarServico(servico));
     }
 
     @PutMapping("/{id}")
-    @Operation(description = "Edita um cliente especifico",summary = "Editar")
+    @Operation(description = "Edita um servico especifico",summary = "Editar")
     public ResponseEntity<?> editar(@PathVariable Long id,@RequestBody Servico servico){
-        var servicoDb = servicoRepository.findById(id).orElse(null);
-
-        if(servicoDb != null){
-            servicoDb.setDescricao(servico.getDescricao());
-            servicoDb.setTempo(servico.getTempo());
-            servicoDb.setPreco(servico.getPreco());
-            servicoDb.setStatus(servico.getStatus());
-            servicoRepository.save(servicoDb);
-            return ResponseEntity.ok("Atualizado com sucesso!");
-        }
-
-        return ResponseEntity.notFound().build();
-
+        var servicoResult = servicoService.EditarServico(id, servico);
+        return servicoResult ? ResponseEntity.ok("Servico alterado com sucesso.") : ResponseEntity.notFound().build();
     }
 
     @PutMapping("/{id}/AlterarStatus")
     public ResponseEntity<?> alterarStatus(@PathVariable Long id, @RequestBody AlterarStatusServicoRequest alterarStatusServicoRequest){
-        var servicoDb = servicoRepository.findById(id).orElse(null);
-
-        if(servicoDb != null){
-            servicoDb.setStatus(alterarStatusServicoRequest.status());
-            servicoRepository.save(servicoDb);
-            return ResponseEntity.ok("Atualizado com sucesso!");
+        var servicoStatusResult = servicoService.AlterarStatusServico(id, alterarStatusServicoRequest);
+        return servicoStatusResult ? ResponseEntity.ok("Status alterado com sucesso.") : ResponseEntity.notFound().build();
         }
-
-        return ResponseEntity.notFound().build();
-    }
 
 }

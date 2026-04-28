@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import ServicosForm from "../../components/ServicosForm";
 import axios from "axios";
 import { Servico } from "@/app/types/servico/servico";
+import { buscarServicoId } from "@/app/services/servicoService";
 
 
 
@@ -21,9 +22,9 @@ export default function EditarServico() {
 
     const buscarServico = async () => {
         debugger;
-        const servicoResult = await axios.get<Servico>('http://localhost:8080/servico/' + codigo);
+        const servicoResult = await buscarServicoId(codigo)
 
-        if (servicoResult.data) setServicos(servicoResult.data)
+        if (servicoResult) setServicos(servicoResult)
         else router.push("/servicos")
 
        
