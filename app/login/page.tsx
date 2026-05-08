@@ -3,6 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation"
 import { useAuth } from "../context/AuthContext";
 import { LoginResponse, Usuario } from "../types/auth/auth";
+import { validarLogin } from "../services/authService";
 
 export default function Login() {
 
@@ -10,8 +11,8 @@ export default function Login() {
     const { login } = useAuth();
 
     const handleLogin = async (formData: FormData) => {
-        const username = formData.get("username")
-        const senha = formData.get("senha")
+        const username = formData.get("username")?.toString()
+        const senha = formData.get("senha")?.toString();
         try {
 
             // var loginResult = await fetch("http://localhost:8080/auth/login", {
@@ -22,21 +23,13 @@ export default function Login() {
             //     body: JSON.stringify({usuario:usuario,senha:senha})
             // });
 
-            var loginResult = await axios.post<LoginResponse>('http://localhost:8080/auth/login',
-                {username:username,senha:senha}
-            )
-
-            if(loginResult.status !== 200){
-                alert("Usuário ou senha inválido!")
-                return;
+            var loginResult = await validarLogin(username,senha );
+            if(loginResult?.sucesso){
+                const usuarioMock = new Usuario(1, "GUILHERME.STOLS","")
+                login(usuarioMock, loginResult?.token);
+                router.push("/agenda")
             }
-            
-            const usuarioMock = new Usuario(1, "GUILHERME.STOLS")
-
-            login(usuarioMock, loginResult.data.token);
-
-            router.push("/agenda")
-            console.log(`Autenticado - Usuário: ${username}`)
+     
         }
         catch {
             alert("Erro ao entrar no sistema.")

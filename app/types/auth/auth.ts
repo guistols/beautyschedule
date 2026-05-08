@@ -1,17 +1,19 @@
 export class Usuario {
     constructor(
         public codigo: number,
-        public usuario: string
+        public username: string,
+        public senha: string
     ) { }
 }
 
 export interface AuthContextType {
-    usuario: Usuario | null,
+    username: Usuario | null,
     token: string | null,
     login: (usuario: Usuario, token: string) => void
     logout: () => void
 }
 
 export interface LoginResponse {
+    sucesso: boolean,
     token: string
 }
