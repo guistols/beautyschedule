@@ -1,5 +1,6 @@
 package com.senac.beautyschedule.domain.entities;
 
+import com.senac.beautyschedule.application.dto.ServicoRequest;
 import com.senac.beautyschedule.domain.enuns.EnumStatusServico;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,5 +25,11 @@ public class Servico {
     private double preco;
 
     private EnumStatusServico status = EnumStatusServico.ATIVO;
+
+    public Servico (ServicoRequest servico){
+        this.descricao = servico.descricao();
+        this.tempo = servico.tempo();
+        this.preco = servico.preco();
+    }
 
 }

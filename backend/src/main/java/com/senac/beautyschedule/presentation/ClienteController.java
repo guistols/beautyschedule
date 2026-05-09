@@ -1,6 +1,7 @@
 package com.senac.beautyschedule.presentation;
 
 import com.senac.beautyschedule.application.dto.AlterarStatusClienteRequest;
+import com.senac.beautyschedule.application.dto.ClienteRequest;
 import com.senac.beautyschedule.application.dto.ClienteResponse;
 import com.senac.beautyschedule.domain.entities.Cliente;
 import com.senac.beautyschedule.application.services.ClienteService;
@@ -24,26 +25,24 @@ public class ClienteController {
         @Operation(description = "Faz a listagem todos os clientes cadastrados",summary = "Listagem")
         @GetMapping("/listar")
         public ResponseEntity<List<ClienteResponse>> listarTodos(){
-                var clientes = clienteService.BuscarTodosClientes();
-
-                return ResponseEntity.ok(clientes);
+             return ResponseEntity.ok(clienteService.BuscarTodosClientes());
         }
 
         @Operation(description = "Faz a listagem de um cliente especifíco",summary = "Listagem")
         @GetMapping("/{id}")
-        public ResponseEntity<Cliente>listarPorId(@PathVariable Long id){
+        public ResponseEntity<ClienteResponse>listarPorId(@PathVariable Long id){
                 return ResponseEntity.ok(clienteService.BuscarClienteId(id));
         }
 
         @Operation(description = "Salva e envia o cadastro do cliente para o banco de dados",summary = "Salvar")
         @PostMapping("/salvar")
-        public ResponseEntity<Long> salvar(@RequestBody Cliente cliente){
+        public ResponseEntity<Long> salvar(@RequestBody ClienteRequest cliente){
                 return ResponseEntity.ok(clienteService.SalvarCliente(cliente));
         }
 
         @Operation(description = "Edita um cliente especifico",summary = "Editar")
         @PutMapping("/{id}")
-        public ResponseEntity<?> editar(@PathVariable Long id,@RequestBody Cliente cliente){
+        public ResponseEntity<?> editar(@PathVariable Long id,@RequestBody ClienteRequest cliente){
                 var clienteResult = clienteService.EditarCliente(id, cliente);
                 return clienteResult ? ResponseEntity.ok("Atualizado com sucesso!") : ResponseEntity.notFound().build();
         }

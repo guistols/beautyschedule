@@ -1,9 +1,11 @@
 package com.senac.beautyschedule.domain.entities;
+import com.senac.beautyschedule.application.dto.ClienteRequest;
 import com.senac.beautyschedule.domain.enuns.EnumStatusCliente;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @Entity
 @Table(name = "cliente")
@@ -23,4 +25,11 @@ public class Cliente {
     private String cpf;
 
     private EnumStatusCliente status = EnumStatusCliente.ATIVO;
+
+    public Cliente(ClienteRequest cliente){
+        this.nome = cliente.nome();
+        this.telefone = cliente.telefone();
+        this.cpf = cliente.cpf();
+    }
+
 }

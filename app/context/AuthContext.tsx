@@ -1,65 +1,65 @@
-'use client'
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
-import { AuthContextType, Usuario } from "../types/auth/auth";
+// 'use client'
+// import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+// import Cookies from "js-cookie";
+// import { useRouter } from "next/navigation";
+// import { AuthContextType, Usuario } from "../types/auth/auth";
 
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+// const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const useAuth = () => {
-    const context = useContext(AuthContext);
-    if (!context) throw new Error('useAuth deve ser usado dentro do provider!')
+// export const useAuth = () => {
+//     const context = useContext(AuthContext);
+//     if (!context) throw new Error('useAuth deve ser usado dentro do provider!')
 
-    return context;
-}
+//     return context;
+// }
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+// export function AuthProvider({ children }: { children: ReactNode }) {
 
-    const [usuario, setUsuario] = useState<Usuario | null>(null);
-    const [token, setToken] = useState<string | null>(null)
-    const router = useRouter();
+//     //const [usuario, setUsuario] = useState<Usuario | null>(null);
+//     const [token, setToken] = useState<string | null>(null)
+//     const router = useRouter();
 
-    useEffect(() => {
-        const usuarioRecover = Cookies.get("usuario");
-        const tokenRecover = Cookies.get("token");
+//     useEffect(() => {
+//         const usuarioRecover = Cookies.get("usuario");
+//         const tokenRecover = Cookies.get("token");
 
-        if (usuarioRecover && tokenRecover) {
+//         if (usuarioRecover && tokenRecover) {
 
-            try {
-                setUsuario(JSON.parse(usuarioRecover));
-                setToken(tokenRecover);
+//             try {
+//                 //setUsuario(JSON.parse(usuarioRecover));
+//                 setToken(tokenRecover);
 
-                router.push(window.location.pathname)
-            } catch (e) {
-                console.error(e);
-            }
-        }
-    }, [])
+//                 router.push(window.location.pathname)
+//             } catch (e) {
+//                 console.error(e);
+//             }
+//         }
+//     }, [])
 
-    const login = (usuario: Usuario, token: string) => {
+//     const login = (usuario: Usuario, token: string) => {
         
-        setUsuario(usuario);
-        setToken(token);
+//         //setUsuario(usuario);
+//         setToken(token);
 
-        Cookies.set("usuario", JSON.stringify(usuario), { expires: 7 });
-        Cookies.set("token", token, { expires: 7, secure: true })
+//         Cookies.set("usuario", JSON.stringify(usuario), { expires: 7 });
+//         Cookies.set("token", token, { expires: 7, secure: true })
 
-    }
-
-
-
-    const logout = () => {
-        setUsuario(null);
-        setToken(null);
+//     }
 
 
-        Cookies.remove("usuario")
-        Cookies.remove("token")
-    }
-    return (
-        <AuthContext.Provider value={{ usuario, token, login, logout }}>
-            {children}
-        </AuthContext.Provider>
-    )
-}
+
+//     const logout = () => {
+//         //setUsuario(null);
+//         setToken(null);
+
+
+//         Cookies.remove("usuario")
+//         Cookies.remove("token")
+//     }
+//     return (
+//         <AuthContext.Provider value={{token, login, logout }}>
+//             {children}
+//         </AuthContext.Provider>
+//     )
+// }

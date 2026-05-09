@@ -1,14 +1,16 @@
 'use client'
 import axios from "axios";
 import { useRouter } from "next/navigation"
-import { useAuth } from "../context/AuthContext";
 import { LoginResponse, Usuario } from "../types/auth/auth";
 import { validarLogin } from "../services/authService";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/slices/authSlice";
 
 export default function Login() {
 
     const router = useRouter();
-    const { login } = useAuth();
+
+    const dispatch =useDispatch();
 
     const handleLogin = async (formData: FormData) => {
         const username = formData.get("username")?.toString()
@@ -22,13 +24,22 @@ export default function Login() {
             //     },
             //     body: JSON.stringify({usuario:usuario,senha:senha})
             // });
-
+            debugger;
             var loginResult = await validarLogin(username,senha );
+            
             if(loginResult?.sucesso){
-                const usuarioMock = new Usuario(1, "GUILHERME.STOLS","")
-                login(usuarioMock, loginResult?.token);
+                const usuarioMock = new Usuario(1, "GUILHERME.STOLS")
+                dispatch(login(
+                    {
+                        usuario:{...usuarioMock},
+                        token: loginResult.token
+                    }
+                    )
+                )
                 router.push("/agenda")
             }
+
+            
      
         }
         catch {

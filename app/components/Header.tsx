@@ -1,10 +1,13 @@
 'use client'
 
-import { useAuth } from "../context/AuthContext";
+import { useDispatch } from "react-redux";
+import { store } from "../redux/store";
+import { logout } from "../redux/slices/authSlice";
 
 export default function Header() {
 
-  const {usuario, logout} = useAuth();
+  const dispatch = useDispatch();
+  const usuario = store.getState().auth.usuario
 
   return (
     <header className="w-full bg-[#2B344B] border-b border-[#1F2636]/50 sticky top-0 z-50 transition-colors duration-300">
@@ -33,7 +36,7 @@ export default function Header() {
             <div className="flex flex-col">
               <span className="text-sm text-slate-100 font-bold tracking-tight uppercase">
 
-                {usuario?.usuario.toLocaleUpperCase()||'Usuário não identificado'}
+                {usuario?.username.toLocaleUpperCase()||'Usuário não identificado'}
 
               </span>
             </div>
@@ -44,8 +47,11 @@ export default function Header() {
             <button
               type="button"
               className="group flex items-center gap-2 px-4 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200"
-              onClick={logout}
-            >
+              onClick={ (e)=> 
+                {
+                dispatch(logout())
+              }}
+              >
               <span className="text-xs font-black uppercase tracking-widest hidden sm:block">Sair</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

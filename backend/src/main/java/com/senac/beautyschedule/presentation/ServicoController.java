@@ -1,6 +1,7 @@
 package com.senac.beautyschedule.presentation;
+import com.senac.beautyschedule.application.dto.ServicoRequest;
+import com.senac.beautyschedule.application.dto.ServicoResponse;
 import com.senac.beautyschedule.application.dto.dto.AlterarStatusServicoRequest;
-import com.senac.beautyschedule.domain.entities.Servico;
 import com.senac.beautyschedule.application.services.ServicoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -20,26 +21,26 @@ public class ServicoController {
 
     @GetMapping("/listar")
     @Operation(description = "Faz a listagem todos os serviços cadastrados",summary = "Listagem")
-    public ResponseEntity<List<Servico>> listarTodos(){
+    public ResponseEntity<List<ServicoResponse>> listarTodos(){
 
         return ResponseEntity.ok(servicoService.BuscarTodosServicos());
     }
 
     @GetMapping("/{id}")
     @Operation(description = "Faz a listagem de um serviço um específico",summary = "Listagem")
-    public ResponseEntity<Servico>listarPorId(@PathVariable Long id){
+    public ResponseEntity<ServicoResponse>listarPorId(@PathVariable Long id){
         return ResponseEntity.ok(servicoService.BuscarServicoId(id));
     }
 
     @PostMapping("/salvar")
     @Operation(description = "Salva e envia o cadastro do cliente para o banco de dados",summary = "Salvar")
-    public ResponseEntity<Long> salvar(@RequestBody Servico servico){
+    public ResponseEntity<Long> salvar(@RequestBody ServicoRequest servico){
         return ResponseEntity.ok(servicoService.SalvarServico(servico));
     }
 
     @PutMapping("/{id}")
     @Operation(description = "Edita um servico especifico",summary = "Editar")
-    public ResponseEntity<?> editar(@PathVariable Long id,@RequestBody Servico servico){
+    public ResponseEntity<?> editar(@PathVariable Long id,@RequestBody ServicoRequest servico){
         var servicoResult = servicoService.EditarServico(id, servico);
         return servicoResult ? ResponseEntity.ok("Servico alterado com sucesso.") : ResponseEntity.notFound().build();
     }

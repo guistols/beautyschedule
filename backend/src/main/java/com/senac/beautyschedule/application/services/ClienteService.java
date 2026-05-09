@@ -1,6 +1,7 @@
 package com.senac.beautyschedule.application.services;
 
 import com.senac.beautyschedule.application.dto.AlterarStatusClienteRequest;
+import com.senac.beautyschedule.application.dto.ClienteRequest;
 import com.senac.beautyschedule.application.dto.ClienteResponse;
 import com.senac.beautyschedule.domain.entities.Cliente;
 import com.senac.beautyschedule.domain.repository.ClienteRepository;
@@ -25,31 +26,31 @@ public class ClienteService {
     }
 
 
-    public Cliente BuscarClienteId(Long id) {
+    public ClienteResponse BuscarClienteId(Long id) {
         try{
-            return clienteRepository.findById(id).orElse(null);
+            var cliente = clienteRepository.findById(id).orElse(null);
+            return new ClienteResponse(cliente);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public Long SalvarCliente(Cliente cliente) {
+    public Long SalvarCliente(ClienteRequest cliente) {
         try {
-            return clienteRepository.save(cliente).getId();
+            return clienteRepository.save(new Cliente(cliente)).getId();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public boolean EditarCliente(Long id, Cliente cliente) {
+    public boolean EditarCliente(Long id, ClienteRequest cliente) {
         try {
             var clienteDb = clienteRepository.findById(id).orElse(null);
 
             if (clienteDb != null) {
-                clienteDb.setNome(cliente.getNome());
-                clienteDb.setCpf(cliente.getCpf());
-                clienteDb.setTelefone(cliente.getTelefone());
-                clienteDb.setStatus(cliente.getStatus());
+                clienteDb.setNome(cliente.nome());
+                clienteDb.setCpf(cliente.cpf());
+                clienteDb.setTelefone(cliente.telefone());
 
                 clienteRepository.save(clienteDb);
 
