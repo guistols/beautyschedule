@@ -4,13 +4,13 @@ import Footer from "../components/Footer"
 import Header from "../components/Header"
 import { useRouter } from "next/navigation";
 import { Sidebar } from "../components/Sidebar"
-import { RootState } from "@reduxjs/toolkit/query";
 import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
 
-    const {usuario} = useSelector((state:RootState)=> state.auth.usuario);
+    const usuario = useSelector((state:RootState)=> state.auth.usuario);
     const router = useRouter();
 
 
