@@ -1,7 +1,7 @@
 'use client'
-import axios from "axios";
+
 import { useRouter } from "next/navigation"
-import { LoginResponse, Usuario } from "../types/auth/auth";
+import { Usuario } from "../types/auth/auth";
 import { validarLogin } from "../services/authService";
 import { useDispatch } from "react-redux";
 import { login } from "../redux/slices/authSlice";
@@ -13,8 +13,8 @@ export default function Login() {
     const dispatch =useDispatch();
 
     const handleLogin = async (formData: FormData) => {
-        const username = formData.get("username")?.toString()
-        const senha = formData.get("senha")?.toString();
+        const username = formData.get("username")?.toString()?? ""
+        const senha = formData.get("senha")?.toString() ?? "" ;
         try {
 
             // var loginResult = await fetch("http://localhost:8080/auth/login", {
@@ -25,6 +25,7 @@ export default function Login() {
             //     body: JSON.stringify({usuario:usuario,senha:senha})
             // });
             debugger;
+           
             var loginResult = await validarLogin(username,senha );
             
             if(loginResult?.sucesso){

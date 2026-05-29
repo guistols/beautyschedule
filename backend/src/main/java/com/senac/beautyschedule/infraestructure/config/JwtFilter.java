@@ -31,6 +31,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 || path.startsWith("/v3/api-docs")
                 || path.startsWith("/webjars")
                 || path.startsWith("/swagger-resources")
+                || path.equals("/usuarios/adm")
                 || request.getMethod().startsWith("OPTIONS")){
             filterChain.doFilter(request,response);
             return;

@@ -25,6 +25,7 @@ public class AuthController {
         @Autowired
         private UsuarioService usuarioService;
 
+
         @Operation(description = "Faz a validação do usuário", summary = "Acessar")
         @PostMapping("/login")
         public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest){

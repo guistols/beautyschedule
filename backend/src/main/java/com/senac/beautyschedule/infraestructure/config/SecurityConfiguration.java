@@ -28,7 +28,8 @@ public class SecurityConfiguration {
                            "/swagger-ui/**",
                            "/v3/api-docs/**",
                            "/webjars/**",
-                           "/swagger-resources/**")
+                           "/swagger-resources/**",
+                                   "/usuarios/adm")
                            .permitAll()
                            //controle de url por roles (cargos)
                            //.requestMatchers(HttpMethod.GET,"/agenda").hasRole("ADMIN")
