@@ -1,4 +1,4 @@
-ame: CI/CD Docker Build and Test
+name: CI/CD Docker Build and Test
 
 on:
   push:
