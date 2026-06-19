@@ -4,13 +4,15 @@ WORKDIR /app
 
 COPY . .
 
-RUN mvn clean package -DskipTest
+RUN mvn clean package -DskipTests
+
 FROM eclipse-temurin:21-jre-jammy
 
 WORKDIR /app
-COPY --from=builder /app/target/beautyschedule-0.0.1-SNAPSHOT .
+
+COPY --from=builder /app/target/beautyschedule-0.0.1-SNAPSHOT.jar .
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar","beautyschedule-0.0.1-SNAPSHOT"]
+ENTRYPOINT ["java","-jar","beautyschedule-0.0.1-SNAPSHOT.jar"]
 
