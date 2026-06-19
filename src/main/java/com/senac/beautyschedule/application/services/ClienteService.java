@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class ClienteService {
 
     @Autowired
-    //ClienteRepository clienteRepository;
+    ClienteRepository clienteRepository;
 
 
     public List<ClienteResponse> BuscarTodosClientes() {
