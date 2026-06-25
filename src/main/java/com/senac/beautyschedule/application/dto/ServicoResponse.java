@@ -2,11 +2,13 @@ package com.senac.beautyschedule.application.dto;
 
 import com.senac.beautyschedule.domain.entities.Servico;
 
+import java.math.BigDecimal;
+
 public record ServicoResponse(
         Long id,
         String descricao,
         double tempo,
-        double preco,
+        BigDecimal preco,
         String status
 ) {
      public ServicoResponse (Servico servico){

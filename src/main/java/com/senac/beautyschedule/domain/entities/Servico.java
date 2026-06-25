@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "servico")
 @Data
@@ -22,7 +24,7 @@ public class Servico {
 
     private double tempo;
 
-    private double preco;
+    private BigDecimal preco;
 
     private EnumStatusServico status = EnumStatusServico.ATIVO;
 

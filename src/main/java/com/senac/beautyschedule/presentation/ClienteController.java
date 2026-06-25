@@ -3,7 +3,6 @@ package com.senac.beautyschedule.presentation;
 import com.senac.beautyschedule.application.dto.AlterarStatusClienteRequest;
 import com.senac.beautyschedule.application.dto.ClienteRequest;
 import com.senac.beautyschedule.application.dto.ClienteResponse;
-import com.senac.beautyschedule.domain.entities.Cliente;
 import com.senac.beautyschedule.application.services.ClienteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
