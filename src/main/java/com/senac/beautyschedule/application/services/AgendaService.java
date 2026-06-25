@@ -40,14 +40,14 @@ public class AgendaService {
             var clienteBd = clienteRepository.findById(agenda.clienteId()).orElse(null);
             var servicoBd = servicoRepository.findById(agenda.servicoId()).orElse(null);
 
-            if(clienteBd != null && servicoBd != null) {
+            /*if(clienteBd != null && servicoBd != null) {
               Agenda novaAgenda = new Agenda();
 
               novaAgenda.setDataHora(agenda.dataHora());
               novaAgenda.setCliente(clienteBd);
               novaAgenda.setServico(servicoBd);
               novaAgenda.setPreco(servicoBd.getPreco());
-            }
+            }*/
 
             return null;
         } catch (Exception e) {
