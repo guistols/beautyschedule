@@ -11,8 +11,8 @@ export async function salvarAgenda(agenda: Agenda):Promise<void>{
 }
 
 
-export async function buscarListaAgenda():Promise<Agenda[]>{
-    const response = await api.get<Agenda[]>('/agenda/listar');
+export async function buscarListaAgenda(usuarioId : number):Promise<Agenda[]>{
+    const response = await api.get<Agenda[]>('/listarUsuario/' + usuarioId);
 
     if(response.status === 200){
         return response.data
