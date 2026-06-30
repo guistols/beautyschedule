@@ -1,0 +1,3 @@
+{
+  "/(admin)/nova-agenda/page": "app/(admin)/nova-agenda/page.js"
+}

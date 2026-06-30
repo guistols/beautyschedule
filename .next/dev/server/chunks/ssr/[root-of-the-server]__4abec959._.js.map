@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 22, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/guilherme.stols/beautyschedule/app/%28admin%29/servicos/novo/page.tsx"],"sourcesContent":["import Link from \"next/link\";\r\n\r\nexport default function NovoServico(){\r\n    return(\r\n        <div>\r\n            <div>\r\n                <Link href=\"/servicos\">Voltar</Link>\r\n            </div>\r\n            <div>\r\n                <span>Cadastre um novo serviço</span>\r\n            </div>\r\n        </div>\r\n    )\r\n}"],"names":[],"mappings":";;;;;AAAA;;;AAEe,SAAS;IACpB,qBACI,8OAAC;;0BACG,8OAAC;0BACG,cAAA,8OAAC,0LAAI;oBAAC,MAAK;8BAAY;;;;;;;;;;;0BAE3B,8OAAC;0BACG,cAAA,8OAAC;8BAAK;;;;;;;;;;;;;;;;;AAItB"}}]
+}

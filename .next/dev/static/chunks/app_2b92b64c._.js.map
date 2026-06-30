@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/guilherme.stols/beautyschedule/app/mock/servico.tsx"],"sourcesContent":["export class Servico {\r\n    constructor (\r\n        public id: number|null,\r\n        public descricao: string,\r\n        public tempo: number,\r\n        public preco: number,\r\n        public status: string, \r\n    ) {}\r\n}\r\n"],"names":[],"mappings":";;;;AAAO,MAAM;;;;;;IACT,YACI,AAAO,EAAe,EACtB,AAAO,SAAiB,EACxB,AAAO,KAAa,EACpB,AAAO,KAAa,EACpB,AAAO,MAAc,CACvB;aALS,KAAA;aACA,YAAA;aACA,QAAA;aACA,QAAA;aACA,SAAA;IACR;AACP"}}]
+}

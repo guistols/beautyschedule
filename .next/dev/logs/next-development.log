@@ -1,0 +1,321 @@
+[00:00:04.521] Server  LOG     ✓ Ready in 3.8s
+[00:00:10.489] Server  ERROR   ⨯ ./app/(admin)/layout.tsx:5:1
+Export useAuth doesn't exist in target module
+  3 | import Footer from "../components/Footer"
+  4 | import Header from "../components/Header"
+> 5 | import { useAuth } from "../context/AuthContext"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { useRouter } from "next/navigation";
+  7 | import { Sidebar } from "../components/Sidebar"
+  8 |
+
+The export useAuth was not found in module [project]/app/context/AuthContext.tsx [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/(admin)/layout.tsx [Client Component Browser]
+    ./app/(admin)/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(admin)/layout.tsx [Client Component SSR]
+    ./app/(admin)/layout.tsx [Server Component]
+
+
+
+./app/(admin)/layout.tsx:5:1
+Export useAuth doesn't exist in target module
+  3 | import Footer from "../components/Footer"
+  4 | import Header from "../components/Header"
+> 5 | import { useAuth } from "../context/AuthContext"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { useRouter } from "next/navigation";
+  7 | import { Sidebar } from "../components/Sidebar"
+  8 |
+
+The export useAuth was not found in module [project]/app/context/AuthContext.tsx [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/(admin)/layout.tsx [Client Component Browser]
+    ./app/(admin)/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(admin)/layout.tsx [Client Component SSR]
+    ./app/(admin)/layout.tsx [Server Component]
+
+
+[00:00:11.939] Browser ERROR   uncaughtError: Error: ./app/(admin)/layout.tsx:5:1
+Export useAuth doesn't exist in target module
+  3 | import Footer from "../components/Footer"
+  4 | import Header from "../components/Header"
+> 5 | import { useAuth } from "../context/AuthContext"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { useRouter } from "next/navigation";
+  7 | import { Sidebar } from "../components/Sidebar"
+  8 |
+
+The export useAuth was not found in module [project]/app/context/AuthContext.tsx [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/(admin)/layout.tsx [Client Component Browser]
+    ./app/(admin)/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(admin)/layout.tsx [Client Component SSR]
+    ./app/(admin)/layout.tsx [Server Component]
+
+
+[00:00:12.406] Browser ERROR   ./app/(admin)/layout.tsx:5:1
+Export useAuth doesn't exist in target module
+  3 | import Footer from "../components/Footer"
+  4 | import Header from "../components/Header"
+> 5 | import { useAuth } from "../context/AuthContext"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { useRouter } from "next/navigation";
+  7 | import { Sidebar } from "../components/Sidebar"
+  8 |
+
+The export useAuth was not found in module [project]/app/context/AuthContext.tsx [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/(admin)/layout.tsx [Client Component Browser]
+    ./app/(admin)/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(admin)/layout.tsx [Client Component SSR]
+    ./app/(admin)/layout.tsx [Server Component]
+[00:00:12.406] Browser ERROR   ./app/(admin)/layout.tsx:5:1
+Export useAuth doesn't exist in target module
+  3 | import Footer from "../components/Footer"
+  4 | import Header from "../components/Header"
+> 5 | import { useAuth } from "../context/AuthContext"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { useRouter } from "next/navigation";
+  7 | import { Sidebar } from "../components/Sidebar"
+  8 |
+
+The export useAuth was not found in module [project]/app/context/AuthContext.tsx [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/(admin)/layout.tsx [Client Component Browser]
+    ./app/(admin)/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(admin)/layout.tsx [Client Component SSR]
+    ./app/(admin)/layout.tsx [Server Component]
+[00:00:13.405] Browser ERROR   ./app/(admin)/layout.tsx:5:1
+Export useAuth doesn't exist in target module
+  3 | import Footer from "../components/Footer"
+  4 | import Header from "../components/Header"
+> 5 | import { useAuth } from "../context/AuthContext"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { useRouter } from "next/navigation";
+  7 | import { Sidebar } from "../components/Sidebar"
+  8 |
+
+The export useAuth was not found in module [project]/app/context/AuthContext.tsx [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/(admin)/layout.tsx [Client Component Browser]
+    ./app/(admin)/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(admin)/layout.tsx [Client Component SSR]
+    ./app/(admin)/layout.tsx [Server Component]
+[00:00:13.405] Browser ERROR   ./app/(admin)/layout.tsx:5:1
+Export useAuth doesn't exist in target module
+  3 | import Footer from "../components/Footer"
+  4 | import Header from "../components/Header"
+> 5 | import { useAuth } from "../context/AuthContext"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import { useRouter } from "next/navigation";
+  7 | import { Sidebar } from "../components/Sidebar"
+  8 |
+
+The export useAuth was not found in module [project]/app/context/AuthContext.tsx [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/(admin)/layout.tsx [Client Component Browser]
+    ./app/(admin)/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/(admin)/layout.tsx [Client Component SSR]
+    ./app/(admin)/layout.tsx [Server Component]
+[00:02:25.831] Server  LOG     ✓ Compiled in 51ms
+[00:02:26.525] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'usuario')
+[00:02:26.825] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:27.393] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'usuario')
+[00:02:57.395] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:02:57.636] Server  LOG     ✓ Compiled in 52ms
+[00:02:57.813] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:06.861] Browser ERROR   A non-serializable value was detected in an action, in the path: `payload.usuario`. Value: {"codigo":1,"senha":"","username":"GUILHERME.STOLS"} 
+Take a look at the logic that dispatched this action:  {"payload":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJcIkd1aWxoZXJtZVwiIiwic3ViIjoiYWRtaW4iLCJleHAiOjE3NzgyODUxNTZ9.atlgKhDeH9ZI1Kzm2V-wu4UjZhpX4n_GIrw7ru-zy3g","usuario":{"codigo":1,"senha":"","username":"GUILHERME.STOLS"}},"type":"auth/login"} 
+(See https://redux.js.org/faq/actions#why-should-type-be-a-string-or-at-least-serializable-why-should-my-action-types-be-constants) 
+(To allow non-serializable values see: https://redux-toolkit.js.org/usage/usage-guide#working-with-non-serializable-data)
+[00:03:06.861] Browser ERROR   A non-serializable value was detected in the state, in the path: `auth.usuario`. Value: {"codigo":1,"senha":"","username":"GUILHERME.STOLS"} 
+Take a look at the reducer(s) handling this action type: auth/login.
+(See https://redux.js.org/faq/organizing-state#can-i-put-functions-promises-or-other-non-serializable-items-in-my-store-state)
+[00:09:23.868] Server  LOG     ✓ Compiled in 22ms
+[00:10:12.567] Server  LOG     ✓ Compiled in 15ms
+[00:10:14.685] Server  LOG     ✓ Compiled in 37ms
+[00:10:17.078] Browser ERROR   A non-serializable value was detected in an action, in the path: `payload.usuario`. Value: {"codigo":1,"senha":"","username":"GUILHERME.STOLS"} 
+Take a look at the logic that dispatched this action:  {"payload":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJcIkd1aWxoZXJtZVwiIiwic3ViIjoiYWRtaW4iLCJleHAiOjE3NzgyODU1NDZ9.JlqNHibkX8uBSbxhVY7b7W9wIV5eI4nuQui73-hZ8rk","usuario":{"codigo":1,"senha":"","username":"GUILHERME.STOLS"}},"type":"auth/login"} 
+(See https://redux.js.org/faq/actions#why-should-type-be-a-string-or-at-least-serializable-why-should-my-action-types-be-constants) 
+(To allow non-serializable values see: https://redux-toolkit.js.org/usage/usage-guide#working-with-non-serializable-data)
+[00:10:17.078] Browser ERROR   A non-serializable value was detected in the state, in the path: `auth.usuario`. Value: {"codigo":1,"senha":"","username":"GUILHERME.STOLS"} 
+Take a look at the reducer(s) handling this action type: auth/login.
+(See https://redux.js.org/faq/organizing-state#can-i-put-functions-promises-or-other-non-serializable-items-in-my-store-state)
+[00:10:17.800] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:11:11.934] Browser ERROR   A non-serializable value was detected in an action, in the path: `payload.usuario`. Value: {"codigo":1,"username":"GUILHERME.STOLS"} 
+Take a look at the logic that dispatched this action:  {"payload":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJcIkd1aWxoZXJtZVwiIiwic3ViIjoiYWRtaW4iLCJleHAiOjE3NzgyODU1OTV9.bU4lmKFuSEn0c99Zt92qS1TF9ndYhCy4ADSUhYMMUqA","usuario":{"codigo":1,"username":"GUILHERME.STOLS"}},"type":"auth/login"} 
+(See https://redux.js.org/faq/actions#why-should-type-be-a-string-or-at-least-serializable-why-should-my-action-types-be-constants) 
+(To allow non-serializable values see: https://redux-toolkit.js.org/usage/usage-guide#working-with-non-serializable-data)
+[00:11:11.935] Browser ERROR   A non-serializable value was detected in the state, in the path: `auth.usuario`. Value: {"codigo":1,"username":"GUILHERME.STOLS"} 
+Take a look at the reducer(s) handling this action type: auth/login.
+(See https://redux.js.org/faq/organizing-state#can-i-put-functions-promises-or-other-non-serializable-items-in-my-store-state)
+[00:11:12.470] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:12:21.147] Server  LOG     ✓ Compiled in 27ms
+[00:12:24.227] Browser ERROR   A non-serializable value was detected in an action, in the path: `payload.usuario`. Value: {"codigo":1,"username":"GUILHERME.STOLS"} 
+Take a look at the logic that dispatched this action:  {"payload":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJcIkd1aWxoZXJtZVwiIiwic3ViIjoiYWRtaW4iLCJleHAiOjE3NzgyODU2NDh9.NAM_-AGb3QpuQNyZa0wuEX9EtmqPWGMZn85W1d7S5cU","usuario":{"codigo":1,"username":"GUILHERME.STOLS"}},"type":"auth/login"} 
+(See https://redux.js.org/faq/actions#why-should-type-be-a-string-or-at-least-serializable-why-should-my-action-types-be-constants) 
+(To allow non-serializable values see: https://redux-toolkit.js.org/usage/usage-guide#working-with-non-serializable-data)
+[00:12:24.227] Browser ERROR   A non-serializable value was detected in the state, in the path: `auth.usuario`. Value: {"codigo":1,"username":"GUILHERME.STOLS"} 
+Take a look at the reducer(s) handling this action type: auth/login.
+(See https://redux.js.org/faq/organizing-state#can-i-put-functions-promises-or-other-non-serializable-items-in-my-store-state)
+[00:12:24.471] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'toLocaleUpperCase')
+[00:12:31.021] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:12:35.802] Browser ERROR   A non-serializable value was detected in an action, in the path: `payload.usuario`. Value: {"codigo":1,"username":"GUILHERME.STOLS"} 
+Take a look at the logic that dispatched this action:  {"payload":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJcIkd1aWxoZXJtZVwiIiwic3ViIjoiYWRtaW4iLCJleHAiOjE3NzgyODU3MjZ9.-orBk-_8PfdMiJbRd8OPjZnzzPZrS8brP2CvP-wGtzY","usuario":{"codigo":1,"username":"GUILHERME.STOLS"}},"type":"auth/login"} 
+(See https://redux.js.org/faq/actions#why-should-type-be-a-string-or-at-least-serializable-why-should-my-action-types-be-constants) 
+(To allow non-serializable values see: https://redux-toolkit.js.org/usage/usage-guide#working-with-non-serializable-data)
+[00:12:35.802] Browser ERROR   A non-serializable value was detected in the state, in the path: `auth.usuario`. Value: {"codigo":1,"username":"GUILHERME.STOLS"} 
+Take a look at the reducer(s) handling this action type: auth/login.
+(See https://redux.js.org/faq/organizing-state#can-i-put-functions-promises-or-other-non-serializable-items-in-my-store-state)
+[00:12:44.470] Server  LOG     ✓ Compiled in 13ms
+[00:24:47.694] Server  LOG     ✓ Compiled in 41ms
+[00:24:48.394] Browser ERROR   ./app/login/page.tsx:31:41
+Parsing ecmascript source code failed
+  29 |             if(loginResult?.sucesso){
+  30 |                 const usuarioMock = new Usuario(1, "GUILHERME.STOLS")
+> 31 |                 dispatch(login({usuario {...usuarioMock}, token: loginResult?.token}))
+     |                                         ^
+  32 |                 
+  33 |                 router.push("/agenda")
+  34 |             }
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+[00:26:56.226] Server  LOG     ✓ Compiled in 55ms
+[00:26:56.389] Browser ERROR   ./app/login/page.tsx:31:41
+Parsing ecmascript source code failed
+  29 |             if(loginResult?.sucesso){
+  30 |                 const usuarioMock = new Usuario(1, "GUILHERME.STOLS")
+> 31 |                 dispatch(login({usuario {...usuarioMock}, token: loginResult?.token}))
+     |                                         ^
+  32 |                 
+  33 |                 router.push("/agenda")
+  34 |             }
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+[00:41:00.397] Browser ERROR   ./app/login/page.tsx:31:41
+Parsing ecmascript source code failed
+  29 |             if(loginResult?.sucesso){
+  30 |                 const usuarioMock = new Usuario(1, "GUILHERME.STOLS")
+> 31 |                 dispatch(login({usuario {...usuarioMock}, token: loginResult?.token}))
+     |                                         ^
+  32 |                 
+  33 |                 router.push("/agenda")
+  34 |             }
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+[00:41:03.916] Server  LOG     ✓ Compiled in 27ms
+[00:41:04.397] Browser ERROR   ./app/login/page.tsx:31:41
+Parsing ecmascript source code failed
+  29 |             if(loginResult?.sucesso){
+  30 |                 const usuarioMock = new Usuario(1, "GUILHERME.STOLS")
+> 31 |                 dispatch(login({usuario {...usuarioMock}, token: loginResult?.token}))
+     |                                         ^
+  32 |                 
+  33 |                 router.push("/agenda")
+  34 |             }
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+[00:43:50.147] Server  LOG     ✓ Compiled in 25ms
+[00:43:50.393] Browser ERROR   ./app/login/page.tsx:31:41
+Parsing ecmascript source code failed
+  29 |             if(loginResult?.sucesso){
+  30 |                 const usuarioMock = new Usuario(1, "GUILHERME.STOLS")
+> 31 |                 dispatch(login({usuario {...usuarioMock}, token: loginResult?.token}))
+     |                                         ^
+  32 |                 
+  33 |                 router.push("/agenda")
+  34 |             }
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+[00:54:03.281] Server  LOG     ✓ Compiled in 21ms
+[00:54:14.487] Server  LOG     ✓ Compiled in 26ms
+[00:55:10.214] Server  LOG     ✓ Compiled in 47ms
+[00:57:14.880] Server  LOG     ✓ Compiled in 101ms

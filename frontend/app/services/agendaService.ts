@@ -3,7 +3,7 @@ import api from "./api"
 
 
 export async function salvarAgenda(agenda: Agenda):Promise<void>{
-    //debugger;
+    debugger;
     var response = await api.post<Agenda>('/agenda/salvar',agenda)
     if(response.status !== 200){
         console.log(response)
@@ -11,11 +11,11 @@ export async function salvarAgenda(agenda: Agenda):Promise<void>{
 }
 
 
-export async function buscarListaAgenda(usuarioId : number):Promise<Agenda[]>{
-    const response = await api.get<Agenda[]>('/listarUsuario/' + usuarioId);
+export async function buscarListaAgenda():Promise<Agenda[]>{
+    const response = await api.get<Agenda[]>('/agenda/listar');
 
     if(response.status === 200){
-        return response.data
+        return response.data    
     }
 
     return [];

@@ -17,17 +17,14 @@ interface RootState {
 export default function Agendas() {
 
     const [agenda, setAgenda] = useState<Agenda[]>([]);
-    const usuarioLogado = useSelector((state: RootState) => state.auth.usuario);
-
+    
     useEffect(() => {
-        if (!usuarioLogado?.id) return;
-
-        carregarAgenda(usuarioLogado.id);
-    }, [usuarioLogado?.id]);
+        carregarAgenda();
+    })
 
     const carregarAgenda = async () => {
         try {
-            const response = await buscarListaAgenda(id);
+            const response = await buscarListaAgenda();
             setAgenda(response ?? []);
         } catch (error) {
             console.error(error);

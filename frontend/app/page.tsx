@@ -35,7 +35,7 @@ export default function LandPage() {
                         <Link href="/login"
                             className="px-10 py-4 bg-slate-900 dark:bg-amber-500 text-white dark:text-slate-950 font-bold rounded-2xl hover:bg-slate-800 dark:hover:bg-amber-400 transition-all shadow-2xl shadow-slate-900/20 dark:shadow-amber-900/20 inline-block text-center uppercase tracking-widest text-sm active:scale-95"
                         >
-                            Cadastrar-se agora
+                            Entrar
                         </Link>
 
 

@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 22, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/guilherme.stols/beautyschedule/app/%28admin%29/clientes/novo/page.tsx"],"sourcesContent":["import Link from \"next/link\";\r\n\r\nexport default function NovoCliente(){\r\n    return(\r\n        <div>\r\n            <div>\r\n                <Link href=\"/clientes\">Voltar</Link>\r\n                <h1>Novo cliente</h1>\r\n            </div>\r\n\r\n            <ClienteForm/>\r\n        </div>\r\n    )\r\n}"],"names":[],"mappings":";;;;;AAAA;;;AAEe,SAAS;IACpB,qBACI,8OAAC;;0BACG,8OAAC;;kCACG,8OAAC,0LAAI;wBAAC,MAAK;kCAAY;;;;;;kCACvB,8OAAC;kCAAG;;;;;;;;;;;;0BAGR,8OAAC;;;;;;;;;;;AAGb"}}]
+}

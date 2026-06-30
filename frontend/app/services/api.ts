@@ -13,7 +13,7 @@ api.interceptors.request.use(
 
 
     (config) =>{
-
+        debugger;
         if(token){
         config.headers.Authorization = `Bearer ${token}`;
 

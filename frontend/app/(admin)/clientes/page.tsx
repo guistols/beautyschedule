@@ -17,6 +17,7 @@ export default function Clientes() {
 
     //funcao pra trazer os clientes
     const carregarCliente = async () => {
+        debugger;
         try {
             const response = await buscarListaCliente();
             setClientes(response);

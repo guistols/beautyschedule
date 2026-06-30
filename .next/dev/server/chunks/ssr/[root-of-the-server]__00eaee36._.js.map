@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 18, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/guilherme.stols/beautyschedule/app/home/page.tsx"],"sourcesContent":["\r\nexport default function Home(){\r\n    return(\r\n        <>\r\n            Home\r\n        </>\r\n    )\r\n}"],"names":[],"mappings":";;;;;;AACe,SAAS;IACpB,qBACI;kBAAE;;AAIV"}}]
+}

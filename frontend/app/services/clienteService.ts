@@ -4,6 +4,7 @@ import api from "./api";
 
 
 export async function buscarListaCliente(): Promise<Cliente[]> {
+    debugger;
     const response = await api.get<Cliente[]>('/cliente/listar');
     if (response.status === 200) {
         return response.data
