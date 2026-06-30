@@ -1,4 +1,3 @@
-package com.senac.beautyscheduledesk;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

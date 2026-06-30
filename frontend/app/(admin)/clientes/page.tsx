@@ -21,8 +21,7 @@ export default function Clientes() {
             const response = await buscarListaCliente();
             setClientes(response);
         } catch (error) {
-            alert("Erro ao carregar dados dos clientes")
-            console.error(error)
+                console.error(error)
         }
     }
     

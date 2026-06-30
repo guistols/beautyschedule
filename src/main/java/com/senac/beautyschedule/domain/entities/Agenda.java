@@ -20,6 +20,10 @@ public class Agenda {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "usuario_id",referencedColumnName = "id")
+    private Usuario usuario;
+
     private LocalDateTime dataHora;
 
     private BigDecimal preco;

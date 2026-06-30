@@ -1,5 +1,5 @@
 'use client'
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import { useRouter } from "next/navigation";
@@ -12,16 +12,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
     const usuario = useSelector((state:RootState)=> state.auth.usuario);
     const router = useRouter();
-
+    const [montado, setMontado] = useState(false);
 
     useEffect(()=>{
-        
+        setMontado(true);
         if(usuario == null){
             
             router.push("/login")
         }
-    })
-
+    }, [usuario, router]); 
+    if (!montado) return null
     if(usuario== null) return null;
 
     return (

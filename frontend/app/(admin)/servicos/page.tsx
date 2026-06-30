@@ -25,6 +25,7 @@ export default function Servicos() {
     }
 
     const handleAlterarStatus = async (servico:Servico)=>{
+        debugger;
         try{
             var novoStatus = "";
 
