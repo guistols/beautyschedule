@@ -4,11 +4,11 @@ package com.senac.beautyschedule.domain.entities;
 import com.senac.beautyschedule.application.dto.UsuarioRequest;
 import com.senac.beautyschedule.application.dto.UsuarioRequestAdm;
 import com.senac.beautyschedule.domain.valueobjects.CPF;
+import io.micrometer.common.lang.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -51,8 +51,8 @@ public class Usuario implements UserDetails {
     public Usuario(UsuarioRequestAdm usuario){
         this.username = usuario.username();
         this.senha = usuario.senha();
-        this.cpf = new CPF(usuario.cpf());
         this.cep = usuario.cep();
+        this.logradouro = usuario.logradouro();
         this.bairro = usuario.bairro();
         this.cidade = usuario.cidade();
         this.role = "ROLE_ADMIN";

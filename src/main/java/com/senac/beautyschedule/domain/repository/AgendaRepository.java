@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface AgendaRepository extends JpaRepository<Agenda, Long> {
-    List<Agenda> findByUsuarioId(Long usuarioId);
+    List<Agenda> findAllByUsuarioId(Long usuarioId);
     boolean existsByDataHoraAndUsuarioId(LocalDateTime dataHora, Long usuarioId);
 }

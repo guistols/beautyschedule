@@ -5,22 +5,16 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-interface RootState {
-    auth: {
-        usuario: {
-            id: number | null;
-            nome: string;
-        } | null;
-        token: string;
-    }
-}
 export default function Agendas() {
 
     const [agenda, setAgenda] = useState<Agenda[]>([]);
-    
+    const usuarioLogado = useSelector((state: RootState) => state.auth.usuario);
+
     useEffect(() => {
-        carregarAgenda();
-    })
+        if (!usuarioLogado?.id) return;
+
+        carregarAgenda(usuarioLogado.id);
+    }, [usuarioLogado?.id]);
 
     const carregarAgenda = async () => {
         try {
