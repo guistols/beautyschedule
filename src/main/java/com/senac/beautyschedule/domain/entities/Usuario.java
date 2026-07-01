@@ -51,8 +51,8 @@ public class Usuario implements UserDetails {
     public Usuario(UsuarioRequestAdm usuario){
         this.username = usuario.username();
         this.senha = usuario.senha();
-        this.cpf = new CPF(usuario.cpf());
         this.cep = usuario.cep();
+        this.logradouro = usuario.logradouro();
         this.bairro = usuario.bairro();
         this.cidade = usuario.cidade();
         this.role = "ROLE_ADMIN";
