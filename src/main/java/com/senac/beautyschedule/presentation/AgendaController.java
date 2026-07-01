@@ -2,9 +2,8 @@ package com.senac.beautyschedule.presentation;
 
 import com.senac.beautyschedule.application.dto.AgendaRequest;
 import com.senac.beautyschedule.application.dto.AgendaResponse;
-import com.senac.beautyschedule.application.dto.AlterarStatusClienteRequest;
-import com.senac.beautyschedule.application.dto.ClienteRequest;
 import com.senac.beautyschedule.application.services.AgendaService;
+import com.senac.beautyschedule.domain.entities.Agenda;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +22,11 @@ public class AgendaController {
     @GetMapping("/listar")
     public ResponseEntity<List<AgendaResponse>> listarTodos(){
         return ResponseEntity.ok(agendaService.BuscarTodasAgendas());
+    }
+    @GetMapping("/listarUsuario/{usuarioId}")
+    public ResponseEntity<List<Agenda>> listarPorUsuario(@PathVariable Long usuarioId) {
+        return ResponseEntity.ok(agendaService.buscarPorUsuario(usuarioId));
+
     }
 
     @PostMapping("/salvar")

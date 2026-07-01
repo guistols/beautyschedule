@@ -75,4 +75,8 @@ public class AgendaService {
             throw new RuntimeException(e);
         }
     }
+
+    public List<Agenda> buscarPorUsuario(Long usuarioId) {
+        return agendaRepository.findByUsuarioId(usuarioId);
+    }
 }
