@@ -5,6 +5,7 @@ import com.senac.beautyschedule.application.dto.AgendaResponse;
 import com.senac.beautyschedule.application.dto.ClienteResponse;
 import com.senac.beautyschedule.domain.entities.Agenda;
 import com.senac.beautyschedule.domain.entities.Cliente;
+import com.senac.beautyschedule.domain.entities.Usuario;
 import com.senac.beautyschedule.domain.repository.AgendaRepository;
 import com.senac.beautyschedule.domain.repository.ClienteRepository;
 import com.senac.beautyschedule.domain.repository.ServicoRepository;
@@ -35,6 +36,15 @@ public class AgendaService {
 
     public List<AgendaResponse> BuscarTodasAgendas() {
         try {
+            var usuarioLogado = (Usuario) SecurityContextHolder.getContext()
+                    .getAuthentication().getPrincipal();
+            if(usuarioLogado==null){
+                throw new IllegalArgumentException();
+            }
+            if(!usuarioLogado.getRole().equals("ROLE_ADMIN")){
+                return agendaRepository.findAllByUsuarioId(usuarioLogado.getId()).stream().map(AgendaResponse::new).collect(Collectors.toList());
+            }
+
             return agendaRepository.findAll().stream().map(AgendaResponse::new).collect(Collectors.toList());
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -44,14 +54,16 @@ public class AgendaService {
 
     public Long SalvarAgenda(AgendaRequest agenda) {
         try {
-            var usuarioLogado = ((UserDetails) SecurityContextHolder.getContext()
-                    .getAuthentication().getPrincipal()).getUsername();
+            var usuarioLogado = (Usuario) SecurityContextHolder.getContext()
+                    .getAuthentication().getPrincipal();
+            if(usuarioLogado==null){
+                throw new IllegalArgumentException();
+            }
 
-            var usuarioDb = usuarioRepository.findByUsername(usuarioLogado).orElse(null);
             if (agenda.dataHora().isBefore(LocalDateTime.now())) {
                 throw new RuntimeException("Não é possível realizar um agendamento no passado.");
             }
-            boolean horarioOcupado = agendaRepository.existsByDataHoraAndUsuarioId(agenda.dataHora(),usuarioDb.getId()
+            boolean horarioOcupado = agendaRepository.existsByDataHoraAndUsuarioId(agenda.dataHora(),usuarioLogado.getId()
             );
 
             if (horarioOcupado) {
@@ -67,7 +79,7 @@ public class AgendaService {
               novaAgenda.setCliente(clienteBd);
               novaAgenda.setServico(servicoBd);
               novaAgenda.setPreco(servicoBd.getPreco());
-              novaAgenda.setUsuario(usuarioDb);
+              novaAgenda.setUsuario(usuarioLogado);
               return agendaRepository.save(novaAgenda).getId();
             }
             return null;
