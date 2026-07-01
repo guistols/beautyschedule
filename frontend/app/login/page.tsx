@@ -10,11 +10,11 @@ export default function Login() {
 
     const router = useRouter();
 
-    const dispatch =useDispatch();
+    const dispatch = useDispatch();
 
     const handleLogin = async (formData: FormData) => {
-        const username = formData.get("username")?.toString()?? ""
-        const senha = formData.get("senha")?.toString() ?? "" ;
+        const username = formData.get("username")?.toString() ?? ""
+        const senha = formData.get("senha")?.toString() ?? "";
         try {
 
             // var loginResult = await fetch("http://localhost:8080/auth/login", {
@@ -25,23 +25,19 @@ export default function Login() {
             //     body: JSON.stringify({usuario:usuario,senha:senha})
             // });
             debugger;
-           
-            var loginResult = await validarLogin(username,senha );
-            
-            if(loginResult?.sucesso){
-                const usuarioMock = new Usuario(1, "GUILHERME.STOLS")
-                dispatch(login(
-                    {
-                        usuario:{...usuarioMock},
-                        token: loginResult.token
-                    }
-                    )
-                )
+
+            var loginResult = await validarLogin(username, senha);
+
+            if (loginResult?.sucesso) {
+                dispatch(login({
+                    usuario: loginResult.usuario, 
+                    token: loginResult.token
+                }))
                 router.push("/agenda")
             }
 
-            
-     
+
+
         }
         catch {
             alert("Erro ao entrar no sistema.")

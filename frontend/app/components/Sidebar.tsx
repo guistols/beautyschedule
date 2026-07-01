@@ -1,6 +1,12 @@
+'use client'
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/redux/store";
 
 export function Sidebar() {
+
+    const usuario = useSelector((state: RootState) => state.auth.usuario);
+
     return (
         <aside className="w-64 h-screen bg-[#2B344B] border-r border-[#1F2636]/50 flex flex-col transition-all duration-300">
 
@@ -34,8 +40,16 @@ export function Sidebar() {
                 >
                     <span className="text-[10px] font-black uppercase tracking-[0.3em] group-hover:text-amber-500 transition-colors">Serviços</span>
                 </Link>
+
+                {usuario?.role === 'ROLE_ADMIN' && (
+                    <Link
+                        href="/usuarios"
+                        className="block px-6 py-4 rounded-2xl text-slate-400 hover:text-white hover:bg-white/5 transition-all group"
+                    >
+                        <span className="text-[10px] font-black uppercase tracking-[0.3em] group-hover:text-amber-500 transition-colors">Gestão de Usuários</span>
+                    </Link>
+                )}
             </nav>
         </aside>
     );
-
 }

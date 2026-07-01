@@ -23,11 +23,6 @@ public class AgendaController {
     public ResponseEntity<List<AgendaResponse>> listarTodos(){
         return ResponseEntity.ok(agendaService.BuscarTodasAgendas());
     }
-    @GetMapping("/listarUsuario/{usuarioId}")
-    public ResponseEntity<List<Agenda>> listarPorUsuario(@PathVariable Long usuarioId) {
-        return ResponseEntity.ok(agendaService.buscarPorUsuario(usuarioId));
-
-    }
 
     @PostMapping("/salvar")
     public ResponseEntity<Long> salvar(@RequestBody AgendaRequest agenda){

@@ -78,6 +78,15 @@ public class UsuarioService {
             }
         }
 
+    public UsuarioResponse BuscarUsuarioPorUsername(String username) {
+        try {
+            var usuario = usuarioRepository.findByUsername(username).orElse(null);
+            return new UsuarioResponse(usuario);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
         public Long SalvarUsuarioAdm(UsuarioRequestAdm usuario) {
             try {
                 if(usuario.secretKey().equals(secret)) {

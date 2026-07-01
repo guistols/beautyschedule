@@ -26,7 +26,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @GetMapping
+    @GetMapping("/listar")
     @Operation(description = "Realiza uma listagem de todos os usuários no banco", summary = "Listagem todos")
     public ResponseEntity<List<UsuarioResponse>> listarTodos(){
 
@@ -40,7 +40,6 @@ public class UsuarioController {
     public ResponseEntity<Usuario> buscarUsuarioLogado(Authentication authentication){
         Usuario usuario = (Usuario) authentication.getPrincipal();
         return ResponseEntity.ok(usuarioRepository.findById(usuario.getId()).orElse(null));
-        //Há de se verificar como arrumo esse aqui
     }
 
     @GetMapping("/{id}")
@@ -50,7 +49,7 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.BuscarUsuarioPorId(id));
     }
 
-    @PostMapping
+    @PostMapping("/salvar")
     @Operation(description = "Registra um novo usuário no banco", summary = "Salvar usuário")
     public ResponseEntity<Long> salvar(@RequestBody UsuarioRequest usuario){
         return ResponseEntity.ok(usuarioService.SalvarUsuario(usuario));

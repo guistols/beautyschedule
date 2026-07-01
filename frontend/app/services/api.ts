@@ -7,13 +7,12 @@ const api = axios.create({
     baseURL: 'http://localhost:8080'
 });
 
-const token = Cookies.get('token')
-
 api.interceptors.request.use(
-
+    
 
     (config) =>{
-
+        debugger;
+        const token = Cookies.get('token')
         if(token){
         config.headers.Authorization = `Bearer ${token}`;
 

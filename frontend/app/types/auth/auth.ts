@@ -1,10 +1,15 @@
 export class Usuario {
     constructor(
-        public codigo: number,
-        public username: string
+        public id: number | null,
+        public username: string,
+        public role: string,
+        public cpf: string,
+        public senha: string
     ) { }
 }
-
+export interface UsuarioFormProps {
+    usuarioExistente ? : Usuario 
+}
 export interface AuthContextType {
     username: Usuario | null,
     token: string | null,
@@ -18,5 +23,6 @@ export interface AuthState{
 
 export interface LoginResponse {
     sucesso: boolean,
-    token: string
+    token: string,
+    usuario: Usuario 
 }

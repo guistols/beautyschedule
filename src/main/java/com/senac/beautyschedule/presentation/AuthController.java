@@ -1,7 +1,7 @@
 package com.senac.beautyschedule.presentation;
 
 import com.senac.beautyschedule.application.dto.dto.LoginRequest;
-import com.senac.beautyschedule.application.dto.dto.LoginResponse;
+import com.senac.beautyschedule.application.dto.LoginResponse;
 import com.senac.beautyschedule.application.services.TokenService;
 import com.senac.beautyschedule.application.services.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,8 +33,10 @@ public class AuthController {
             if(usuarioService.ValidaUsuarioSenha(loginRequest)){
 
                 var token = tokenService.gerarToken(loginRequest.username());
+                var usuario = usuarioService.BuscarUsuarioPorUsername(loginRequest.username());
 
-                return ResponseEntity.ok(new LoginResponse(token));
+
+                return ResponseEntity.ok(new LoginResponse(token, usuario));
             }
 
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

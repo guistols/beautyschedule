@@ -29,9 +29,6 @@ public class AgendaService {
     private ClienteRepository clienteRepository;
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    @Autowired
     private ServicoRepository servicoRepository;
 
     public List<AgendaResponse> BuscarTodasAgendas() {
@@ -44,7 +41,6 @@ public class AgendaService {
             if(!usuarioLogado.getRole().equals("ROLE_ADMIN")){
                 return agendaRepository.findAllByUsuarioId(usuarioLogado.getId()).stream().map(AgendaResponse::new).collect(Collectors.toList());
             }
-
             return agendaRepository.findAll().stream().map(AgendaResponse::new).collect(Collectors.toList());
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -89,6 +85,6 @@ public class AgendaService {
     }
 
     public List<Agenda> buscarPorUsuario(Long usuarioId) {
-        return agendaRepository.findByUsuarioId(usuarioId);
+        return agendaRepository.findAllByUsuarioId(usuarioId);
     }
 }
